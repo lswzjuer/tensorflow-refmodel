@@ -1,0 +1,2 @@
+#!/bin/bash
+python evaluate_network_semseg.py  --img_dir=/private/liusongwei/01_semseg/img/val2014  --labels_dir=/private/liusongwei/01_semseg/annotations_converted/instances_val2014 --file_list=/private/liusongwei/01_semseg/coco_val2014_file_list.txt  --pb_file=../../tensorflow_model/01_semseg/all_quantized_model.pb --result_file=../../tensorflow_model/01_semseg/reference_result/new_fp_quantized_result.txt

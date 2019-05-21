@@ -1,0 +1,14 @@
+# 比较好用的可视化caffe模型的工具
+https://ethereon.github.io/netscope/#/editor
+
+
+# 怎么修改.protxt文件然后匹配修改对应的.caffemodel文件
+
+https://blog.csdn.net/sinat_24143931/article/details/88420450
+
+https://blog.csdn.net/u013597931/article/details/85061342
+
+https://blog.csdn.net/u012420309/article/details/78933874
+
+# 模型转为tensorflow并预测
+https://blog.csdn.net/oTengYue/article/details/84322041

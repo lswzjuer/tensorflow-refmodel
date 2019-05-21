@@ -1,0 +1,1843 @@
+
+name:"mxnet-mdoel"
+
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param {
+    shape: { dim: 1 dim: 8 dim: 1088 dim: 800 }
+  }
+}
+
+
+layer {
+	bottom: "data"
+	top: "resnetv1pyr1_hybridsequential0_conv0_fwd"
+	name: "resnetv1pyr1_hybridsequential0_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 32
+		kernel_size: 3
+		pad: 1
+		group: 1
+		stride: 2
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "data"
+	}
+}
+
+
+layer {
+  bottom: "resnetv1pyr1_hybridsequential0_conv0_fwd"
+  top: "resnetv1pyr1_relu0_fwd"
+  name: "resnetv1pyr1_relu0_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_relu0_fwd"
+	top: "resnetv1pyr1_hybridsequential1_conv0_fwd"
+	name: "resnetv1pyr1_hybridsequential1_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 32
+		kernel_size: 3
+		pad: 1
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_hybridsequential1_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_hybridsequential1_conv0_fwd"
+  top: "resnetv1pyr1_relu1_fwd"
+  name: "resnetv1pyr1_relu1_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_relu1_fwd"
+	top: "resnetv1pyr1_hybridsequential2_conv0_fwd"
+	name: "resnetv1pyr1_hybridsequential2_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 3
+		pad: 1
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_hybridsequential2_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_hybridsequential2_conv0_fwd"
+  top: "resnetv1pyr1_relu2_fwd"
+  name: "resnetv1pyr1_relu2_fwd"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "resnetv1pyr1_relu2_fwd"
+  top: "pool0_fwd"
+  name: "pool0_fwd"
+  type: "Pooling"
+  pooling_param {
+    pool: MAX
+    kernel_size: 3
+    stride: 2
+    pad: 0
+  }
+}
+
+
+layer {
+	bottom: "pool0_fwd"
+	top: "resnetv1pyr1_stage_4bottleneckv10_hybridsequential0_conv0_fwd"
+	name: "resnetv1pyr1_stage_4bottleneckv10_hybridsequential0_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 32
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_4bottleneckv10_hybridsequential0_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_4bottleneckv10_hybridsequential0_conv0_fwd"
+  top: "resnetv1pyr1_stage_4bottleneckv10_relu0_fwd"
+  name: "resnetv1pyr1_stage_4bottleneckv10_relu0_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_4bottleneckv10_relu0_fwd"
+	top: "resnetv1pyr1_stage_4bottleneckv10_hybridsequential1_conv0_fwd"
+	name: "resnetv1pyr1_stage_4bottleneckv10_hybridsequential1_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 32
+		kernel_size: 3
+		pad: 1
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_4bottleneckv10_hybridsequential1_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_4bottleneckv10_hybridsequential1_conv0_fwd"
+  top: "resnetv1pyr1_stage_4bottleneckv10_relu1_fwd"
+  name: "resnetv1pyr1_stage_4bottleneckv10_relu1_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_4bottleneckv10_relu1_fwd"
+	top: "resnetv1pyr1_stage_4bottleneckv10_hybridsequential2_conv0_fwd"
+	name: "resnetv1pyr1_stage_4bottleneckv10_hybridsequential2_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 256
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_4bottleneckv10_hybridsequential2_conv0_weight"
+	}
+}
+
+layer {
+	bottom: "pool0_fwd"
+	top: "resnetv1pyr1_stage_4_shortcuthybridsequential0_conv0_fwd"
+	name: "resnetv1pyr1_stage_4_shortcuthybridsequential0_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 256
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_4_shortcuthybridsequential0_conv0_weight"
+	}
+}
+
+layer {
+  name: "resnetv1pyr1_stage_4bottleneckv10__plus0"
+  type: "Eltwise"
+  bottom: "resnetv1pyr1_stage_4bottleneckv10_hybridsequential2_conv0_fwd"
+  bottom: "resnetv1pyr1_stage_4_shortcuthybridsequential0_conv0_fwd"
+  top: "resnetv1pyr1_stage_4bottleneckv10__plus0"
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_4bottleneckv10__plus0"
+  top: "resnetv1pyr1_stage_4bottleneckv10_relu2_fwd"
+  name: "resnetv1pyr1_stage_4bottleneckv10_relu2_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_4bottleneckv10_relu2_fwd"
+	top: "resnetv1pyr1_stage_4bottleneckv11_hybridsequential0_conv0_fwd"
+	name: "resnetv1pyr1_stage_4bottleneckv11_hybridsequential0_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 32
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_4bottleneckv11_hybridsequential0_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_4bottleneckv11_hybridsequential0_conv0_fwd"
+  top: "resnetv1pyr1_stage_4bottleneckv11_relu0_fwd"
+  name: "resnetv1pyr1_stage_4bottleneckv11_relu0_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_4bottleneckv11_relu0_fwd"
+	top: "resnetv1pyr1_stage_4bottleneckv11_hybridsequential1_conv0_fwd"
+	name: "resnetv1pyr1_stage_4bottleneckv11_hybridsequential1_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 32
+		kernel_size: 3
+		pad: 1
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_4bottleneckv11_hybridsequential1_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_4bottleneckv11_hybridsequential1_conv0_fwd"
+  top: "resnetv1pyr1_stage_4bottleneckv11_relu1_fwd"
+  name: "resnetv1pyr1_stage_4bottleneckv11_relu1_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_4bottleneckv11_relu1_fwd"
+	top: "resnetv1pyr1_stage_4bottleneckv11_hybridsequential2_conv0_fwd"
+	name: "resnetv1pyr1_stage_4bottleneckv11_hybridsequential2_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 256
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_4bottleneckv11_hybridsequential2_conv0_weight"
+	}
+}
+
+layer {
+  name: "resnetv1pyr1_stage_4bottleneckv11__plus0"
+  type: "Eltwise"
+  bottom: "resnetv1pyr1_stage_4bottleneckv11_hybridsequential2_conv0_fwd"
+  bottom: "resnetv1pyr1_stage_4bottleneckv10_relu2_fwd"
+  top: "resnetv1pyr1_stage_4bottleneckv11__plus0"
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_4bottleneckv11__plus0"
+  top: "resnetv1pyr1_stage_4bottleneckv11_relu2_fwd"
+  name: "resnetv1pyr1_stage_4bottleneckv11_relu2_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_4bottleneckv11_relu2_fwd"
+	top: "resnetv1pyr1_stage_4bottleneckv12_hybridsequential0_conv0_fwd"
+	name: "resnetv1pyr1_stage_4bottleneckv12_hybridsequential0_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 32
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_4bottleneckv12_hybridsequential0_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_4bottleneckv12_hybridsequential0_conv0_fwd"
+  top: "resnetv1pyr1_stage_4bottleneckv12_relu0_fwd"
+  name: "resnetv1pyr1_stage_4bottleneckv12_relu0_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_4bottleneckv12_relu0_fwd"
+	top: "resnetv1pyr1_stage_4bottleneckv12_hybridsequential1_conv0_fwd"
+	name: "resnetv1pyr1_stage_4bottleneckv12_hybridsequential1_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 32
+		kernel_size: 3
+		pad: 1
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_4bottleneckv12_hybridsequential1_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_4bottleneckv12_hybridsequential1_conv0_fwd"
+  top: "resnetv1pyr1_stage_4bottleneckv12_relu1_fwd"
+  name: "resnetv1pyr1_stage_4bottleneckv12_relu1_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_4bottleneckv12_relu1_fwd"
+	top: "resnetv1pyr1_stage_4bottleneckv12_hybridsequential2_conv0_fwd"
+	name: "resnetv1pyr1_stage_4bottleneckv12_hybridsequential2_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 256
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_4bottleneckv12_hybridsequential2_conv0_weight"
+	}
+}
+
+layer {
+  name: "resnetv1pyr1_stage_4bottleneckv12__plus0"
+  type: "Eltwise"
+  bottom: "resnetv1pyr1_stage_4bottleneckv12_hybridsequential2_conv0_fwd"
+  bottom: "resnetv1pyr1_stage_4bottleneckv11_relu2_fwd"
+  top: "resnetv1pyr1_stage_4bottleneckv12__plus0"
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_4bottleneckv12__plus0"
+  top: "resnetv1pyr1_stage_4bottleneckv12_relu2_fwd"
+  name: "resnetv1pyr1_stage_4bottleneckv12_relu2_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_4bottleneckv12_relu2_fwd"
+	top: "resnetv1pyr1_stage_8bottleneckv10_hybridsequential0_conv0_fwd"
+	name: "resnetv1pyr1_stage_8bottleneckv10_hybridsequential0_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 128
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 2
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_8bottleneckv10_hybridsequential0_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_8bottleneckv10_hybridsequential0_conv0_fwd"
+  top: "resnetv1pyr1_stage_8bottleneckv10_relu0_fwd"
+  name: "resnetv1pyr1_stage_8bottleneckv10_relu0_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_8bottleneckv10_relu0_fwd"
+	top: "resnetv1pyr1_stage_8bottleneckv10_hybridsequential1_conv0_fwd"
+	name: "resnetv1pyr1_stage_8bottleneckv10_hybridsequential1_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 128
+		kernel_size: 3
+		pad: 1
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_8bottleneckv10_hybridsequential1_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_8bottleneckv10_hybridsequential1_conv0_fwd"
+  top: "resnetv1pyr1_stage_8bottleneckv10_relu1_fwd"
+  name: "resnetv1pyr1_stage_8bottleneckv10_relu1_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_8bottleneckv10_relu1_fwd"
+	top: "resnetv1pyr1_stage_8bottleneckv10_hybridsequential2_conv0_fwd"
+	name: "resnetv1pyr1_stage_8bottleneckv10_hybridsequential2_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 512
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_8bottleneckv10_hybridsequential2_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_4bottleneckv12_relu2_fwd"
+  top: "resnetv1pyr1_stage_8_shortcutpool0_fwd"
+  name: "resnetv1pyr1_stage_8_shortcutpool0_fwd"
+  type: "Pooling"
+  pooling_param {
+    pool: AVE
+    kernel_size: 2
+    stride: 2
+    pad: 0
+  }
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_8_shortcutpool0_fwd"
+	top: "resnetv1pyr1_stage_8_shortcuthybridsequential0_conv0_fwd"
+	name: "resnetv1pyr1_stage_8_shortcuthybridsequential0_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 512
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_8_shortcuthybridsequential0_conv0_weight"
+	}
+}
+
+layer {
+  name: "resnetv1pyr1_stage_8bottleneckv10__plus0"
+  type: "Eltwise"
+  bottom: "resnetv1pyr1_stage_8bottleneckv10_hybridsequential2_conv0_fwd"
+  bottom: "resnetv1pyr1_stage_8_shortcuthybridsequential0_conv0_fwd"
+  top: "resnetv1pyr1_stage_8bottleneckv10__plus0"
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_8bottleneckv10__plus0"
+  top: "resnetv1pyr1_stage_8bottleneckv10_relu2_fwd"
+  name: "resnetv1pyr1_stage_8bottleneckv10_relu2_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_8bottleneckv10_relu2_fwd"
+	top: "resnetv1pyr1_stage_8bottleneckv11_hybridsequential0_conv0_fwd"
+	name: "resnetv1pyr1_stage_8bottleneckv11_hybridsequential0_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_8bottleneckv11_hybridsequential0_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_8bottleneckv11_hybridsequential0_conv0_fwd"
+  top: "resnetv1pyr1_stage_8bottleneckv11_relu0_fwd"
+  name: "resnetv1pyr1_stage_8bottleneckv11_relu0_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_8bottleneckv11_relu0_fwd"
+	top: "resnetv1pyr1_stage_8bottleneckv11_hybridsequential1_conv0_fwd"
+	name: "resnetv1pyr1_stage_8bottleneckv11_hybridsequential1_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 3
+		pad: 1
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_8bottleneckv11_hybridsequential1_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_8bottleneckv11_hybridsequential1_conv0_fwd"
+  top: "resnetv1pyr1_stage_8bottleneckv11_relu1_fwd"
+  name: "resnetv1pyr1_stage_8bottleneckv11_relu1_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_8bottleneckv11_relu1_fwd"
+	top: "resnetv1pyr1_stage_8bottleneckv11_hybridsequential2_conv0_fwd"
+	name: "resnetv1pyr1_stage_8bottleneckv11_hybridsequential2_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 512
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_8bottleneckv11_hybridsequential2_conv0_weight"
+	}
+}
+
+layer {
+  name: "resnetv1pyr1_stage_8bottleneckv11__plus0"
+  type: "Eltwise"
+  bottom: "resnetv1pyr1_stage_8bottleneckv11_hybridsequential2_conv0_fwd"
+  bottom: "resnetv1pyr1_stage_8bottleneckv10_relu2_fwd"
+  top: "resnetv1pyr1_stage_8bottleneckv11__plus0"
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_8bottleneckv11__plus0"
+  top: "resnetv1pyr1_stage_8bottleneckv11_relu2_fwd"
+  name: "resnetv1pyr1_stage_8bottleneckv11_relu2_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_8bottleneckv11_relu2_fwd"
+	top: "resnetv1pyr1_stage_8bottleneckv12_hybridsequential0_conv0_fwd"
+	name: "resnetv1pyr1_stage_8bottleneckv12_hybridsequential0_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_8bottleneckv12_hybridsequential0_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_8bottleneckv12_hybridsequential0_conv0_fwd"
+  top: "resnetv1pyr1_stage_8bottleneckv12_relu0_fwd"
+  name: "resnetv1pyr1_stage_8bottleneckv12_relu0_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_8bottleneckv12_relu0_fwd"
+	top: "resnetv1pyr1_stage_8bottleneckv12_hybridsequential1_conv0_fwd"
+	name: "resnetv1pyr1_stage_8bottleneckv12_hybridsequential1_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 3
+		pad: 1
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_8bottleneckv12_hybridsequential1_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_8bottleneckv12_hybridsequential1_conv0_fwd"
+  top: "resnetv1pyr1_stage_8bottleneckv12_relu1_fwd"
+  name: "resnetv1pyr1_stage_8bottleneckv12_relu1_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_8bottleneckv12_relu1_fwd"
+	top: "resnetv1pyr1_stage_8bottleneckv12_hybridsequential2_conv0_fwd"
+	name: "resnetv1pyr1_stage_8bottleneckv12_hybridsequential2_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 512
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_8bottleneckv12_hybridsequential2_conv0_weight"
+	}
+}
+
+layer {
+  name: "resnetv1pyr1_stage_8bottleneckv12__plus0"
+  type: "Eltwise"
+  bottom: "resnetv1pyr1_stage_8bottleneckv12_hybridsequential2_conv0_fwd"
+  bottom: "resnetv1pyr1_stage_8bottleneckv11_relu2_fwd"
+  top: "resnetv1pyr1_stage_8bottleneckv12__plus0"
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_8bottleneckv12__plus0"
+  top: "resnetv1pyr1_stage_8bottleneckv12_relu2_fwd"
+  name: "resnetv1pyr1_stage_8bottleneckv12_relu2_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_8bottleneckv12_relu2_fwd"
+	top: "resnetv1pyr1_stage_8bottleneckv13_hybridsequential0_conv0_fwd"
+	name: "resnetv1pyr1_stage_8bottleneckv13_hybridsequential0_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_8bottleneckv13_hybridsequential0_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_8bottleneckv13_hybridsequential0_conv0_fwd"
+  top: "resnetv1pyr1_stage_8bottleneckv13_relu0_fwd"
+  name: "resnetv1pyr1_stage_8bottleneckv13_relu0_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_8bottleneckv13_relu0_fwd"
+	top: "resnetv1pyr1_stage_8bottleneckv13_hybridsequential1_conv0_fwd"
+	name: "resnetv1pyr1_stage_8bottleneckv13_hybridsequential1_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 3
+		pad: 1
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_8bottleneckv13_hybridsequential1_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_8bottleneckv13_hybridsequential1_conv0_fwd"
+  top: "resnetv1pyr1_stage_8bottleneckv13_relu1_fwd"
+  name: "resnetv1pyr1_stage_8bottleneckv13_relu1_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_8bottleneckv13_relu1_fwd"
+	top: "resnetv1pyr1_stage_8bottleneckv13_hybridsequential2_conv0_fwd"
+	name: "resnetv1pyr1_stage_8bottleneckv13_hybridsequential2_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 512
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_8bottleneckv13_hybridsequential2_conv0_weight"
+	}
+}
+
+layer {
+  name: "resnetv1pyr1_stage_8bottleneckv13__plus0"
+  type: "Eltwise"
+  bottom: "resnetv1pyr1_stage_8bottleneckv13_hybridsequential2_conv0_fwd"
+  bottom: "resnetv1pyr1_stage_8bottleneckv12_relu2_fwd"
+  top: "resnetv1pyr1_stage_8bottleneckv13__plus0"
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_8bottleneckv13__plus0"
+  top: "resnetv1pyr1_stage_8bottleneckv13_relu2_fwd"
+  name: "resnetv1pyr1_stage_8bottleneckv13_relu2_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_8bottleneckv13_relu2_fwd"
+	top: "resnetv1pyr1_hybridsequential6_conv0_fwd"
+	name: "resnetv1pyr1_hybridsequential6_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 128
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_hybridsequential6_conv0_weight"
+	}
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_8bottleneckv13_relu2_fwd"
+	top: "resnetv1pyr1_stage_16bottleneckv10_hybridsequential0_conv0_fwd"
+	name: "resnetv1pyr1_stage_16bottleneckv10_hybridsequential0_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 256
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 2
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_16bottleneckv10_hybridsequential0_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_16bottleneckv10_hybridsequential0_conv0_fwd"
+  top: "resnetv1pyr1_stage_16bottleneckv10_relu0_fwd"
+  name: "resnetv1pyr1_stage_16bottleneckv10_relu0_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_16bottleneckv10_relu0_fwd"
+	top: "resnetv1pyr1_stage_16bottleneckv10_hybridsequential1_conv0_fwd"
+	name: "resnetv1pyr1_stage_16bottleneckv10_hybridsequential1_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 256
+		kernel_size: 3
+		pad: 1
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_16bottleneckv10_hybridsequential1_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_16bottleneckv10_hybridsequential1_conv0_fwd"
+  top: "resnetv1pyr1_stage_16bottleneckv10_relu1_fwd"
+  name: "resnetv1pyr1_stage_16bottleneckv10_relu1_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_16bottleneckv10_relu1_fwd"
+	top: "resnetv1pyr1_stage_16bottleneckv10_hybridsequential2_conv0_fwd"
+	name: "resnetv1pyr1_stage_16bottleneckv10_hybridsequential2_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 1024
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_16bottleneckv10_hybridsequential2_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_8bottleneckv13_relu2_fwd"
+  top: "resnetv1pyr1_stage_16_shortcutpool0_fwd"
+  name: "resnetv1pyr1_stage_16_shortcutpool0_fwd"
+  type: "Pooling"
+  pooling_param {
+    pool: AVE
+    kernel_size: 2
+    stride: 2
+    pad: 0
+  }
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_16_shortcutpool0_fwd"
+	top: "resnetv1pyr1_stage_16_shortcuthybridsequential0_conv0_fwd"
+	name: "resnetv1pyr1_stage_16_shortcuthybridsequential0_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 1024
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_16_shortcuthybridsequential0_conv0_weight"
+	}
+}
+
+layer {
+  name: "resnetv1pyr1_stage_16bottleneckv10__plus0"
+  type: "Eltwise"
+  bottom: "resnetv1pyr1_stage_16bottleneckv10_hybridsequential2_conv0_fwd"
+  bottom: "resnetv1pyr1_stage_16_shortcuthybridsequential0_conv0_fwd"
+  top: "resnetv1pyr1_stage_16bottleneckv10__plus0"
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_16bottleneckv10__plus0"
+  top: "resnetv1pyr1_stage_16bottleneckv10_relu2_fwd"
+  name: "resnetv1pyr1_stage_16bottleneckv10_relu2_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_16bottleneckv10_relu2_fwd"
+	top: "resnetv1pyr1_stage_16bottleneckv11_hybridsequential0_conv0_fwd"
+	name: "resnetv1pyr1_stage_16bottleneckv11_hybridsequential0_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 128
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_16bottleneckv11_hybridsequential0_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_16bottleneckv11_hybridsequential0_conv0_fwd"
+  top: "resnetv1pyr1_stage_16bottleneckv11_relu0_fwd"
+  name: "resnetv1pyr1_stage_16bottleneckv11_relu0_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_16bottleneckv11_relu0_fwd"
+	top: "resnetv1pyr1_stage_16bottleneckv11_hybridsequential1_conv0_fwd"
+	name: "resnetv1pyr1_stage_16bottleneckv11_hybridsequential1_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 128
+		kernel_size: 3
+		pad: 1
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_16bottleneckv11_hybridsequential1_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_16bottleneckv11_hybridsequential1_conv0_fwd"
+  top: "resnetv1pyr1_stage_16bottleneckv11_relu1_fwd"
+  name: "resnetv1pyr1_stage_16bottleneckv11_relu1_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_16bottleneckv11_relu1_fwd"
+	top: "resnetv1pyr1_stage_16bottleneckv11_hybridsequential2_conv0_fwd"
+	name: "resnetv1pyr1_stage_16bottleneckv11_hybridsequential2_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 1024
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_16bottleneckv11_hybridsequential2_conv0_weight"
+	}
+}
+
+layer {
+  name: "resnetv1pyr1_stage_16bottleneckv11__plus0"
+  type: "Eltwise"
+  bottom: "resnetv1pyr1_stage_16bottleneckv11_hybridsequential2_conv0_fwd"
+  bottom: "resnetv1pyr1_stage_16bottleneckv10_relu2_fwd"
+  top: "resnetv1pyr1_stage_16bottleneckv11__plus0"
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_16bottleneckv11__plus0"
+  top: "resnetv1pyr1_stage_16bottleneckv11_relu2_fwd"
+  name: "resnetv1pyr1_stage_16bottleneckv11_relu2_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_16bottleneckv11_relu2_fwd"
+	top: "resnetv1pyr1_stage_16bottleneckv12_hybridsequential0_conv0_fwd"
+	name: "resnetv1pyr1_stage_16bottleneckv12_hybridsequential0_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 128
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_16bottleneckv12_hybridsequential0_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_16bottleneckv12_hybridsequential0_conv0_fwd"
+  top: "resnetv1pyr1_stage_16bottleneckv12_relu0_fwd"
+  name: "resnetv1pyr1_stage_16bottleneckv12_relu0_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_16bottleneckv12_relu0_fwd"
+	top: "resnetv1pyr1_stage_16bottleneckv12_hybridsequential1_conv0_fwd"
+	name: "resnetv1pyr1_stage_16bottleneckv12_hybridsequential1_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 128
+		kernel_size: 3
+		pad: 1
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_16bottleneckv12_hybridsequential1_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_16bottleneckv12_hybridsequential1_conv0_fwd"
+  top: "resnetv1pyr1_stage_16bottleneckv12_relu1_fwd"
+  name: "resnetv1pyr1_stage_16bottleneckv12_relu1_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_16bottleneckv12_relu1_fwd"
+	top: "resnetv1pyr1_stage_16bottleneckv12_hybridsequential2_conv0_fwd"
+	name: "resnetv1pyr1_stage_16bottleneckv12_hybridsequential2_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 1024
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_16bottleneckv12_hybridsequential2_conv0_weight"
+	}
+}
+
+layer {
+  name: "resnetv1pyr1_stage_16bottleneckv12__plus0"
+  type: "Eltwise"
+  bottom: "resnetv1pyr1_stage_16bottleneckv12_hybridsequential2_conv0_fwd"
+  bottom: "resnetv1pyr1_stage_16bottleneckv11_relu2_fwd"
+  top: "resnetv1pyr1_stage_16bottleneckv12__plus0"
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_16bottleneckv12__plus0"
+  top: "resnetv1pyr1_stage_16bottleneckv12_relu2_fwd"
+  name: "resnetv1pyr1_stage_16bottleneckv12_relu2_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_16bottleneckv12_relu2_fwd"
+	top: "resnetv1pyr1_hybridsequential4_conv0_fwd"
+	name: "resnetv1pyr1_hybridsequential4_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 256
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_hybridsequential4_conv0_weight"
+	}
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_16bottleneckv12_relu2_fwd"
+	top: "resnetv1pyr1_stage_16_dbottleneckv10_hybridsequential0_conv0_fwd"
+	name: "resnetv1pyr1_stage_16_dbottleneckv10_hybridsequential0_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 128
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_16_dbottleneckv10_hybridsequential0_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_16_dbottleneckv10_hybridsequential0_conv0_fwd"
+  top: "resnetv1pyr1_stage_16_dbottleneckv10_relu0_fwd"
+  name: "resnetv1pyr1_stage_16_dbottleneckv10_relu0_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_16_dbottleneckv10_relu0_fwd"
+	top: "resnetv1pyr1_stage_16_dbottleneckv10_hybridsequential1_conv0_fwd"
+	name: "resnetv1pyr1_stage_16_dbottleneckv10_hybridsequential1_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 128
+		kernel_size: 3
+		pad: 2
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 2
+	}
+	param {
+	  name: "resnetv1pyr1_stage_16_dbottleneckv10_hybridsequential1_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_16_dbottleneckv10_hybridsequential1_conv0_fwd"
+  top: "resnetv1pyr1_stage_16_dbottleneckv10_relu1_fwd"
+  name: "resnetv1pyr1_stage_16_dbottleneckv10_relu1_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_16_dbottleneckv10_relu1_fwd"
+	top: "resnetv1pyr1_stage_16_dbottleneckv10_hybridsequential2_conv0_fwd"
+	name: "resnetv1pyr1_stage_16_dbottleneckv10_hybridsequential2_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 1024
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_16_dbottleneckv10_hybridsequential2_conv0_weight"
+	}
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_16bottleneckv12_relu2_fwd"
+	top: "resnetv1pyr1_stage_16_d_shortcuthybridsequential0_conv0_fwd"
+	name: "resnetv1pyr1_stage_16_d_shortcuthybridsequential0_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 1024
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_16_d_shortcuthybridsequential0_conv0_weight"
+	}
+}
+
+layer {
+  name: "resnetv1pyr1_stage_16_dbottleneckv10__plus0"
+  type: "Eltwise"
+  bottom: "resnetv1pyr1_stage_16_dbottleneckv10_hybridsequential2_conv0_fwd"
+  bottom: "resnetv1pyr1_stage_16_d_shortcuthybridsequential0_conv0_fwd"
+  top: "resnetv1pyr1_stage_16_dbottleneckv10__plus0"
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_16_dbottleneckv10__plus0"
+  top: "resnetv1pyr1_stage_16_dbottleneckv10_relu2_fwd"
+  name: "resnetv1pyr1_stage_16_dbottleneckv10_relu2_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_16_dbottleneckv10_relu2_fwd"
+	top: "resnetv1pyr1_stage_16_dbottleneckv11_hybridsequential0_conv0_fwd"
+	name: "resnetv1pyr1_stage_16_dbottleneckv11_hybridsequential0_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 128
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_16_dbottleneckv11_hybridsequential0_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_16_dbottleneckv11_hybridsequential0_conv0_fwd"
+  top: "resnetv1pyr1_stage_16_dbottleneckv11_relu0_fwd"
+  name: "resnetv1pyr1_stage_16_dbottleneckv11_relu0_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_16_dbottleneckv11_relu0_fwd"
+	top: "resnetv1pyr1_stage_16_dbottleneckv11_hybridsequential1_conv0_fwd"
+	name: "resnetv1pyr1_stage_16_dbottleneckv11_hybridsequential1_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 128
+		kernel_size: 3
+		pad: 2
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 2
+	}
+	param {
+	  name: "resnetv1pyr1_stage_16_dbottleneckv11_hybridsequential1_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_16_dbottleneckv11_hybridsequential1_conv0_fwd"
+  top: "resnetv1pyr1_stage_16_dbottleneckv11_relu1_fwd"
+  name: "resnetv1pyr1_stage_16_dbottleneckv11_relu1_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_16_dbottleneckv11_relu1_fwd"
+	top: "resnetv1pyr1_stage_16_dbottleneckv11_hybridsequential2_conv0_fwd"
+	name: "resnetv1pyr1_stage_16_dbottleneckv11_hybridsequential2_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 1024
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_16_dbottleneckv11_hybridsequential2_conv0_weight"
+	}
+}
+
+layer {
+  name: "resnetv1pyr1_stage_16_dbottleneckv11__plus0"
+  type: "Eltwise"
+  bottom: "resnetv1pyr1_stage_16_dbottleneckv11_hybridsequential2_conv0_fwd"
+  bottom: "resnetv1pyr1_stage_16_dbottleneckv10_relu2_fwd"
+  top: "resnetv1pyr1_stage_16_dbottleneckv11__plus0"
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_16_dbottleneckv11__plus0"
+  top: "resnetv1pyr1_stage_16_dbottleneckv11_relu2_fwd"
+  name: "resnetv1pyr1_stage_16_dbottleneckv11_relu2_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_16_dbottleneckv11_relu2_fwd"
+	top: "resnetv1pyr1_stage_16_dbottleneckv12_hybridsequential0_conv0_fwd"
+	name: "resnetv1pyr1_stage_16_dbottleneckv12_hybridsequential0_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 128
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_16_dbottleneckv12_hybridsequential0_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_16_dbottleneckv12_hybridsequential0_conv0_fwd"
+  top: "resnetv1pyr1_stage_16_dbottleneckv12_relu0_fwd"
+  name: "resnetv1pyr1_stage_16_dbottleneckv12_relu0_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_16_dbottleneckv12_relu0_fwd"
+	top: "resnetv1pyr1_stage_16_dbottleneckv12_hybridsequential1_conv0_fwd"
+	name: "resnetv1pyr1_stage_16_dbottleneckv12_hybridsequential1_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 128
+		kernel_size: 3
+		pad: 2
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 2
+	}
+	param {
+	  name: "resnetv1pyr1_stage_16_dbottleneckv12_hybridsequential1_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_16_dbottleneckv12_hybridsequential1_conv0_fwd"
+  top: "resnetv1pyr1_stage_16_dbottleneckv12_relu1_fwd"
+  name: "resnetv1pyr1_stage_16_dbottleneckv12_relu1_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_16_dbottleneckv12_relu1_fwd"
+	top: "resnetv1pyr1_stage_16_dbottleneckv12_hybridsequential2_conv0_fwd"
+	name: "resnetv1pyr1_stage_16_dbottleneckv12_hybridsequential2_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 1024
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_stage_16_dbottleneckv12_hybridsequential2_conv0_weight"
+	}
+}
+
+layer {
+  name: "resnetv1pyr1_stage_16_dbottleneckv12__plus0"
+  type: "Eltwise"
+  bottom: "resnetv1pyr1_stage_16_dbottleneckv12_hybridsequential2_conv0_fwd"
+  bottom: "resnetv1pyr1_stage_16_dbottleneckv11_relu2_fwd"
+  top: "resnetv1pyr1_stage_16_dbottleneckv12__plus0"
+}
+
+layer {
+  bottom: "resnetv1pyr1_stage_16_dbottleneckv12__plus0"
+  top: "resnetv1pyr1_stage_16_dbottleneckv12_relu2_fwd"
+  name: "resnetv1pyr1_stage_16_dbottleneckv12_relu2_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_16_dbottleneckv12_relu2_fwd"
+	top: "resnetv1pyr1_hybridsequential3_conv0_fwd"
+	name: "resnetv1pyr1_hybridsequential3_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 256
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_hybridsequential3_conv0_weight"
+	}
+}
+
+layer {
+  name: "resnetv1pyr1__plus0"
+  type: "Eltwise"
+  bottom: "resnetv1pyr1_hybridsequential4_conv0_fwd"
+  bottom: "resnetv1pyr1_hybridsequential3_conv0_fwd"
+  top: "resnetv1pyr1__plus0"
+}
+
+layer {
+	bottom: "resnetv1pyr1__plus0"
+	top: "resnetv1pyr1_hybridsequential5_conv0_fwd"
+	name: "resnetv1pyr1_hybridsequential5_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 128
+		kernel_size: 3
+		pad: 1
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_hybridsequential5_conv0_weight"
+	}
+}
+
+layer {
+	bottom: "resnetv1pyr1_hybridsequential5_conv0_fwd"
+	top: "resnetv1pyr1_upsampling0"
+	name: "resnetv1pyr1_upsampling0"
+	type: "Deconvolution"
+	convolution_param {
+		num_output: 128
+		kernel_size: 2
+		pad: 0
+		stride: 2
+      weight_filler {
+        type: "constant"
+        value: 0
+	    }
+	}
+}
+
+layer {
+  name: "resnetv1pyr1__plus1"
+  type: "Eltwise"
+  bottom: "resnetv1pyr1_hybridsequential6_conv0_fwd"
+  bottom: "resnetv1pyr1_upsampling0"
+  top: "resnetv1pyr1__plus1"
+}
+
+layer {
+	bottom: "resnetv1pyr1__plus1"
+	top: "resnetv1pyr1_hybridsequential7_conv0_fwd"
+	name: "resnetv1pyr1_hybridsequential7_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 3
+		pad: 1
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_hybridsequential7_conv0_weight"
+	}
+}
+
+layer {
+	bottom: "resnetv1pyr1_hybridsequential7_conv0_fwd"
+	top: "resnetv1pyr1_upsampling1"
+	name: "resnetv1pyr1_upsampling1"
+	type: "Deconvolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 2
+		pad: 0
+		stride: 2
+      weight_filler {
+        type: "constant"
+        value: 0
+	    }
+	}
+}
+
+layer {
+	bottom: "resnetv1pyr1_stage_4bottleneckv12_relu2_fwd"
+	top: "resnetv1pyr1_hybridsequential8_conv0_fwd"
+	name: "resnetv1pyr1_hybridsequential8_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_hybridsequential8_conv0_weight"
+	}
+}
+
+layer {
+  name: "resnetv1pyr1__plus2"
+  type: "Eltwise"
+  bottom: "resnetv1pyr1_upsampling1"
+  bottom: "resnetv1pyr1_hybridsequential8_conv0_fwd"
+  top: "resnetv1pyr1__plus2"
+}
+
+layer {
+	bottom: "resnetv1pyr1__plus2"
+	top: "resnetv1pyr1_hybridsequential9_conv0_fwd"
+	name: "resnetv1pyr1_hybridsequential9_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 3
+		pad: 1
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_hybridsequential9_conv0_weight"
+	}
+}
+
+layer {
+	bottom: "resnetv1pyr1_hybridsequential9_conv0_fwd"
+	top: "resnetv1pyr1_share_head_4hybridsequential0_conv0_fwd"
+	name: "resnetv1pyr1_share_head_4hybridsequential0_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 3
+		pad: 1
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_share_head_4hybridsequential0_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_share_head_4hybridsequential0_conv0_fwd"
+  top: "resnetv1pyr1_share_head_4relu0_fwd"
+  name: "resnetv1pyr1_share_head_4relu0_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_share_head_4relu0_fwd"
+	top: "resnetv1pyr1_cls_head_4hybridsequential0_conv0_fwd"
+	name: "resnetv1pyr1_cls_head_4hybridsequential0_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 3
+		pad: 1
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_cls_head_4hybridsequential0_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_cls_head_4hybridsequential0_conv0_fwd"
+  top: "resnetv1pyr1_cls_head_4relu0_fwd"
+  name: "resnetv1pyr1_cls_head_4relu0_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_cls_head_4relu0_fwd"
+	top: "resnetv1pyr1_cls_head_4hybridsequential1_conv0_fwd"
+	name: "resnetv1pyr1_cls_head_4hybridsequential1_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 3
+		pad: 1
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_cls_head_4hybridsequential1_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_cls_head_4hybridsequential1_conv0_fwd"
+  top: "resnetv1pyr1_cls_head_4relu1_fwd"
+  name: "resnetv1pyr1_cls_head_4relu1_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_cls_head_4relu1_fwd"
+	top: "resnetv1pyr1_cls_head_4hybridsequential2_conv0_fwd"
+	name: "resnetv1pyr1_cls_head_4hybridsequential2_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 4
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_cls_head_4hybridsequential2_conv0_weight"
+	}
+}
+
+
+
+layer {
+	bottom: "resnetv1pyr1_hybridsequential7_conv0_fwd"
+	top: "resnetv1pyr1_share_head_8hybridsequential0_conv0_fwd"
+	name: "resnetv1pyr1_share_head_8hybridsequential0_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 128
+		kernel_size: 3
+		pad: 1
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_share_head_8hybridsequential0_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_share_head_8hybridsequential0_conv0_fwd"
+  top: "resnetv1pyr1_share_head_8relu0_fwd"
+  name: "resnetv1pyr1_share_head_8relu0_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_share_head_8relu0_fwd"
+	top: "resnetv1pyr1_cls_head_8hybridsequential0_conv0_fwd"
+	name: "resnetv1pyr1_cls_head_8hybridsequential0_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 128
+		kernel_size: 3
+		pad: 1
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_cls_head_8hybridsequential0_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_cls_head_8hybridsequential0_conv0_fwd"
+  top: "resnetv1pyr1_cls_head_8relu0_fwd"
+  name: "resnetv1pyr1_cls_head_8relu0_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_cls_head_8relu0_fwd"
+	top: "resnetv1pyr1_cls_head_8hybridsequential1_conv0_fwd"
+	name: "resnetv1pyr1_cls_head_8hybridsequential1_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 3
+		pad: 1
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_cls_head_8hybridsequential1_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_cls_head_8hybridsequential1_conv0_fwd"
+  top: "resnetv1pyr1_cls_head_8relu1_fwd"
+  name: "resnetv1pyr1_cls_head_8relu1_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_cls_head_8relu1_fwd"
+	top: "resnetv1pyr1_cls_head_8hybridsequential2_conv0_fwd"
+	name: "resnetv1pyr1_cls_head_8hybridsequential2_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 4
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_cls_head_8hybridsequential2_conv0_weight"
+	}
+}
+
+
+
+layer {
+	bottom: "resnetv1pyr1_hybridsequential5_conv0_fwd"
+	top: "resnetv1pyr1_share_head_16hybridsequential0_conv0_fwd"
+	name: "resnetv1pyr1_share_head_16hybridsequential0_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 256
+		kernel_size: 3
+		pad: 1
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_share_head_16hybridsequential0_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_share_head_16hybridsequential0_conv0_fwd"
+  top: "resnetv1pyr1_share_head_16relu0_fwd"
+  name: "resnetv1pyr1_share_head_16relu0_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_share_head_16relu0_fwd"
+	top: "resnetv1pyr1_cls_head_16hybridsequential0_conv0_fwd"
+	name: "resnetv1pyr1_cls_head_16hybridsequential0_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 128
+		kernel_size: 3
+		pad: 1
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_cls_head_16hybridsequential0_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_cls_head_16hybridsequential0_conv0_fwd"
+  top: "resnetv1pyr1_cls_head_16relu0_fwd"
+  name: "resnetv1pyr1_cls_head_16relu0_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_cls_head_16relu0_fwd"
+	top: "resnetv1pyr1_cls_head_16hybridsequential1_conv0_fwd"
+	name: "resnetv1pyr1_cls_head_16hybridsequential1_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 3
+		pad: 1
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_cls_head_16hybridsequential1_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_cls_head_16hybridsequential1_conv0_fwd"
+  top: "resnetv1pyr1_cls_head_16relu1_fwd"
+  name: "resnetv1pyr1_cls_head_16relu1_fwd"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "resnetv1pyr1_cls_head_16relu1_fwd"
+	top: "resnetv1pyr1_cls_head_16hybridsequential2_conv0_fwd"
+	name: "resnetv1pyr1_cls_head_16hybridsequential2_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 4
+		kernel_size: 1
+		pad: 0
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_cls_head_16hybridsequential2_conv0_weight"
+	}
+}
+
+
+
+
+
+layer {
+	bottom: "resnetv1pyr1_share_head_4relu0_fwd"
+	top: "resnetv1pyr1_reg_head_4hybridsequential0_conv0_fwd"
+	name: "resnetv1pyr1_reg_head_4hybridsequential0_conv0_fwd"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 3
+		pad: 1
+		group: 1
+		stride: 1
+		bias_term: true
+		dilation: 1
+	}
+	param {
+	  name: "resnetv1pyr1_reg_head_4hybridsequential0_conv0_weight"
+	}
+}
+
+layer {
+  bottom: "resnetv1pyr1_reg_head_4hybridsequential0_conv0_fwd"
+  top: "resnetv1pyr1_reg_head_4relu0_fwd"
+  name: "resnetv1pyr1_reg_DIRC      ¬\œ±Qå\œ±TöÏ          Å§           ‚0\8®ÄéMë5ô~O9vπØ∆ ..vscode/ipch/10e8159904eafac2/mmap_address.bin    \œ£∂jÌT\œ£∂l¯          Å§           ~üm<;≈˜™`qÕ}>r5è ..vscode/ipch/140bc336c47fc042/mmap_address.bin    \œ∫-Zy\œ∫-\f‘          Å§           \È	ÍP"¶5º3e”>ºÑÎak ..vscode/ipch/26656a23448f2146/mmap_address.bin    \œπ%#,T\œπ%&∫‡          Å§           ˇEu,‚Ö ]°ﬂ÷*	SËX[.Ì± ..vscode/ipch/3e06b21bbdca7030/mmap_address.bin    \œµ:[=\œµ:\√T          Å§           ˇ¸d˚-“Ï/“ømÅdÕüØvW ..vscode/ipch/559e76407244b666/mmap_address.bin    \œ∫´ê‡\œ∫¨„(          Å§           ⁄Ïz~+ƒ∑ó“Í∑Öõ€ÀX4dO ..vscode/ipch/66743d35550c5625/mmap_address.bin    \œÆıÃW<\œÆıœ◊∏          Å§           #*~ŒHÁhç∞tü÷8
+ËÅèZ£ ..vscode/ipch/d91656799a0eb232/mmap_address.bin    \¬d,›√x\¬d,ÂR†          Å§          %äbq◊ø°r\∆∂ÔF1*ézÓ 	README.md \¬d,Ï˙»\¬d,ÙúL          Å§           K}ﬂ≈ÒbùŸı!ıÖ%`∏¢Öö __init__.py       \¬d,¸0$\√â≠4F î          Å§          ª€◊jáÅòÊëxπå‘	¿}ç˘ demo.py   \œ-5:ép\œ.ø,T∏D          Å§          L‡√"g
+„r8g‚∫FﬂÁøÙ‰G fixed_the_problem.txt     \¬d-î\¬d-¢¨          Å§           HŸ‡t_äo˚¨ááF„/Ωs  lib/Makefile      \¬d-"?Ä\¬d-)€(          Å§           ‘Hx –∏‚úP‡eÙãå*¿A lib/__init__.py   \¬d-1|¨\√à-!º\          Å§          —emπbÓ≈≥C“Ú'+{BEi lib/config.py     \œ™›-©Ä\œ™›0ˆl          Å§          M@Ü´~ßˇL2∏Y”î lib/config.pyc    \¬d-@≤\¬d-HV¨          Å§           g¿.;é’{G⁄˚‚∑ﬁË∞˙ÃÈ¸õ lib/fp/__init__.py        \œπï!Ä¸\œπï!Ç.          Å§          Ö–-AÙÃhV˝xªF¥≠¨∆ìß lib/fp/__init__.pyc       \œ∞‹Kò\œ∞‹!gH          Å§         c‡’-ç”o›ä*~ƒù∂ch¡ª	 lib/fp/fp.so      \¬d-hÉ»\œµS&dîÃ          Å§          /‰^•Xªœt(˜\E4W\%AU lib/fp/fp_op.cc   \¬d-w«4\œ∏’.ªh          Å§           ˇ åˇ˝6ä˜p,áy`(∑ÏZË lib/fp/fp_op.py   \œπï!ûÃ†\œπï!° T          Å§          È∫—‰Ê‡J#œõ'âB-áé)PÍ lib/fp/fp_op.pyc  \¬d-á–\Œe¶"–©Ã          Å§          ·œXæÊÜé…ÿY”—†Ô,∂Ω∫Ü lib/fp/lp_op_test.py      \¬d-é°4\œ¢S(í¢           Å§          0ÄÆE∞“N3©˝•^7% lib/fp/make_ref_hw.sh     \¬d-•xx\¬d-¥∏ƒ          Å§           gÜäH√<!ÊË4ÓÓï˛·¯_AC˘. lib/lp/__init__.py        \œ∏+Ô.Ñ\œ∏+Ò          Å§          oΩ˝{äﬁåJ$§|@ÿóaŒDïrÖ lib/lp/__init__.pyc       \œ∞1:ΩdD\œ∞v NCÄ          Å§         x@ìJBﬂèX1Î÷0¯o¸X/ô[ lib/lp/lp.so      \¬d-‚i§\¬d-Íl          Å§         W,cìÒ9mA¯˙„ÿ/Ç“-(sÛ©ç lib/lp/lp_back.so \¬d-Òüd\—Ø4øT          Å§          }êÔ ®{35Fé ËW´ÙR lib/lp/lp_op.cc   \¬d-˘<8\œπÑ&P          Å§           ˇô_˙RìmÖh9x.ïKå\ hÖ lib/lp/lp_op.py   \œπï Âm\œπï Áﬁ(          Å§          ÈMâwÿœ©YíÉBtƒ’' lib/lp/lp_op.pyc  \¬d.®\Œ§Ø:V‡          Å§          >`:lU≠¯‰Ë–~Ìˆ4ÙQ§>@Élß lib/lp/lp_op_back.cc      \¬d.&Ûº\œÏ—
+sÏT          Å§          ƒ´À]‚ïˇCŸA¡ûÃµ‹‘∑G lib/lp/lp_op_test.py      \¬d..êê\œÆÈÑ«h          Å§          2ˇ˜3Pêîî-Ì=Ÿó'is—7ÕCÃ lib/lp/make_ref_hw.sh     \¬d.=ƒ\\¬d.M®          Å§          ÚeS¸ôQÿ3∞¢‰oÅ’å { lib/make.sh       \¬d.T≠¸\¬d.T≠¸          Å§            Êù‚õ≤—÷CKã)ÆwZÿ¬‰åSë  lib/nearest_neighbor/__init__.py  \œ∫∆˚»à\œ∫∆˛¯          Å§           •√e¸~är√uW›ÙâÃaŸ‹HI… !lib/nearest_neighbor/__init__.pyc \¬d.\:\¬d.cÿÃ          Å§          Ñ¯€§ï·⁄º¿Ä(}…:¶RAÇà  (lib/nearest_neighbor/nearest_neighbor.py  \œ∫∆	†\œ∫∆	x‡          Å§          ôW“-^4-©úÕ>NVYv›'ê )lib/nearest_neighbor/nearest_neighbor.pyc \¬d.cÿÃ\¬d.sà          Å§          
+Ré€Û¨ùSv	È|¥dOAïÖiØ %lib/nearest_neighbor/proc_ddr_init.pl     \¬d.zµÏ\¬d.âÔ¯          Å§           pÙyOpÎn÷≤øî«Q=‚@ﬁN’e lib/networks/__init__.py  \œ™›Ó5l\œ™›Úiò          Å§          1Ùºr~ö˛ˆ∆ì6	*¿ùçN) lib/networks/__init__.pyc \¬d.âÔ¯\¬d.ô&‰          Å§          g€•ÖêcõkhIf˚:‹¡≤ lib/networks/alexnet.py   \¬d.ô&‰\¬d.®e†          Å§          h_b	—˙<˛÷V*.	ºÃ®I•˘ lib/networks/caffenet.py                            Å§            Ø√övæ≈@»6∫å%ç~⁄7ìZ lib/networks/factory.py   \œ´4˘Úò\œ´4˝S          Å§          ;˜Ó”Ö°◊eã<™s…⁄›ƒ¿ lib/networks/factory.pyc  \¬d.∑¢Ã\¬d.ø>          Å§          gyw¡J«P∞hÂ3VKg÷ lib/networks/googlenet.py                           Å§            &eç MæOÅπïßH™rô‚øf lib/networks/lidarnet.py                            Å§            ´jÏ•‰4BÊÒE€Ä=ì2°

@@ -1,0 +1,22 @@
+image 4
+conv1_1/BiasAdd 4 4
+conv1_2/BiasAdd 4 4
+conv2_1/BiasAdd 3 4
+conv2_2/BiasAdd 4 3
+conv3_1/BiasAdd 3 4
+conv3_2/BiasAdd 3 3
+conv3_3/BiasAdd 4 3
+conv4_1/BiasAdd 3 4
+conv4_2/BiasAdd 3 3
+conv4_3/BiasAdd 4 3
+conv5_1/BiasAdd 3 4
+conv5_2/BiasAdd 2 3
+conv5_3/BiasAdd 2 2
+pool5_Conv/BiasAdd 2 2
+pool4_Conv/BiasAdd 2 4
+pool5_Conv_Upsampled/bilinear_upsampling/resize_images/ResizeBilinear 2 2
+skip_layer_sum_0_0/add 2 2 2
+pool3_Conv/BiasAdd 2 4
+skip_layer_sum_0_0_Upsampled/bilinear_upsampling/resize_images/ResizeBilinear 2 2
+skip_layer_sum_0_1/add 2 2 2
+skip_layer_sum_0_1Upsampled/bilinear_upsampling/resize_images/ResizeBilinear 2 2

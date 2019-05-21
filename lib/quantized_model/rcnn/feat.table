@@ -1,0 +1,14 @@
+images 7
+smallVGG16_alpha0.25_conv1_1_pool5/conv1_1/BiasAdd 6 7
+smallVGG16_alpha0.25_conv1_1_pool5/conv1_2/BiasAdd 6 6
+smallVGG16_alpha0.25_conv1_1_pool5/conv2_1/BiasAdd 7 6
+smallVGG16_alpha0.25_conv1_1_pool5/conv2_2/BiasAdd 7 7
+smallVGG16_alpha0.25_conv1_1_pool5/conv3_1/BiasAdd 7 7
+smallVGG16_alpha0.25_conv1_1_pool5/conv3_2/BiasAdd 7 7
+smallVGG16_alpha0.25_conv1_1_pool5/conv3_3/BiasAdd 7 7
+smallVGG16_alpha0.25_conv1_1_pool5/conv4_1/BiasAdd 7 7
+smallVGG16_alpha0.25_conv1_1_pool5/conv4_2/BiasAdd 6 7
+smallVGG16_alpha0.25_conv1_1_pool5/conv4_3/BiasAdd 6 6
+smallVGG16_alpha0.25_conv1_1_pool5/conv5_1/BiasAdd 5 6
+smallVGG16_alpha0.25_conv1_1_pool5/conv5_2/BiasAdd 5 5
+smallVGG16_alpha0.25_conv1_1_pool5/conv5_3/BiasAdd 4 5

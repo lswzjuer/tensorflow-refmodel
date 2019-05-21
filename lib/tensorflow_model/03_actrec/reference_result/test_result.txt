@@ -1,0 +1,11 @@
+Overall Pixel Accuracy: 0.8686195611953735
+Overall Mean Accuracy: 0.6414602552544958
+Intersection over Union: [0.2633956, 0.86214316]
+F1-Score: [0.4169646, 0.9259687]
+True Positive Rate: [0.31979063, 0.9631299]
+True Negative Rate: [0.9631299, 0.31979063]
+
+Confusion matrix:
+
+[[ 1283   859]
+ [ 2729 22439]]
