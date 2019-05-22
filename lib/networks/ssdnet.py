@@ -4,7 +4,7 @@
 # @Last Modified by:   liusongwei
 # @Last Modified time: 2019-05-21 16:45:33
 
-from .network import Network 
+from  network import Network 
 import tensorflow as tf
 import numpy as np
 import os
@@ -36,7 +36,7 @@ class SSD(Network):
         pass
 
     def get_output_tensor(self):
-        return tf.get_default_graph().get_tensor_by_name('conv1_1/Relu:0')
+        return tf.get_default_graph().get_tensor_by_name('bbox_coords/concat:0')
 
     def quantize_input_image(self,image,bit_frac):
         sh = image.shape
@@ -92,7 +92,7 @@ class SSD(Network):
                                                    'conv4_3_cls_BiasAdd:0':conv4_3_cls,
                                                    'conv5_3_cls_BiasAdd:0':conv5_3_cls},
 
-                                                   return_elements=["new_output:0"],name='')
+                                                   return_elements=["targets/concat:0"],name='')
 
         all_graph_output=tf.identity(output,"new_all_output")
         return all_graph_output
@@ -233,10 +233,10 @@ if __name__ == '__main__':
             net.load(model_dir,sess)
             
             # get test node 
-            # testnode=net.get_output_tensor()
+            testnode=net.get_output_tensor()
             
             # run test
-            pred=net.run_sw_demo(sess,test_data,out_put)
+            pred=net.run_sw_demo(sess,test_data,testnode)
             #pred=convert_to_float_py(pred,4)
             print(pred)
             print(pred.shape)
@@ -249,7 +249,7 @@ if __name__ == '__main__':
         tf.import_graph_def(graph_def2,name='')
 
         input_node=graph2.get_tensor_by_name('image:0')
-        out_put_node=graph2.get_tensor_by_name('targets/concat:0')
+        out_put_node=graph2.get_tensor_by_name('bbox_coords/concat:0')
 
         config = tf.ConfigProto(allow_soft_placement=True)  
         config.gpu_options.per_process_gpu_memory_fraction = 0.6 

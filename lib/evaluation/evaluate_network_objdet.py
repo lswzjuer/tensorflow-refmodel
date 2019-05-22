@@ -88,7 +88,7 @@ if __name__ == '__main__':
             net.load(model_dir,sess)
 
             fid = 0
-            for vcount, vid in enumerate(annotations[:10]):
+            for vcount, vid in enumerate(annotations):
                 print('Processing sequence {}... {}/{}'.format(vid['name'],vcount,len(annotations)))
                 frames, _ = get_frames(vid['full_path'], skip=skip)
                 i=0
