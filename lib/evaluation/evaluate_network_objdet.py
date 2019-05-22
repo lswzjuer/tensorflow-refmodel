@@ -118,6 +118,6 @@ if __name__ == '__main__':
             if result_file is not None:
                 _result_to_file(result_file, lamr, params)
 
-            model_path=r'../tensorflow_model/02_objdet/new_all_model.pb'
-            net.save_model(sess,model_path)
+            #model_path=r'../tensorflow_model/02_objdet/new_all_model.pb'
+            #net.save_model(sess,model_path)
 

@@ -244,7 +244,6 @@ if __name__ == '__main__':
         net=FCN8(is_Hardware=True)
         out_put=net.fusion_graph(sub_model_path)
         
-        os.environ['CUDA_VISIBLE_DEVICES'] = '0,1,2,3'
         config = tf.ConfigProto(allow_soft_placement=True)  
         config.gpu_options.per_process_gpu_memory_fraction = 0.7 
         config.gpu_options.allow_growth = True
