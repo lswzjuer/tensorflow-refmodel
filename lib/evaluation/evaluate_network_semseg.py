@@ -18,8 +18,9 @@ lib_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../lib'))
 add_path(lib_path)
 
 from networks.fcn8net import FCN8
+from networks.fcn8net_3 import FCN8_3
+from networks.fcn8net_4 import FCN8_4
 
-os.environ['CUDA_VISIBLE_DEVICES'] = '0,1,2,3'
 
 MEAN = (73.1574881705, 82.9080206596, 72.3900075701)
 STD = (44.906197822, 46.1445214188, 45.3104437099)
@@ -217,11 +218,13 @@ if __name__ == '__main__':
     parser.add_argument('--pb_file', type=str, help='Full path to .npz file',  default=None)
     parser.add_argument('--sub_model',type=str, help=' sub model used to get fusion graph',default=None)
     parser.add_argument('--result_file', type=str, help='Stores results in result file.', default=None)
+    parser.add_argument('--choose', type=int, help='0:origin_quantized, 1:prune0.3_quantized, 2:prune0.4_quantized', default=None)
+
     #parser.add_argument('--padded_lscape', action='store_true', help='Evaluation for the graph without padding/cropping')
                                                                      
     args = parser.parse_args()
 
-
+    choose_num=args.choose
     sub_model_path=args.sub_model
     model_dir=args.pb_file
 
@@ -241,9 +244,18 @@ if __name__ == '__main__':
     with tf.Graph().as_default() as graph:
 
         # load graph and fusion sub_graph
-        net=FCN8(is_Hardware=True)
+        if choose_num ==0:
+            print(" Quantify the origin model")
+            net=FCN8(is_Hardware=True)
+        elif choose_num ==1:
+            print(" Quantify the pruned0.3 model")
+            net=FCN8_3(is_Hardware=True)
+        else:
+            print(" Quantify the pruned0.4 model")
+            net=FCN8_4(is_Hardware=True)
+
         out_put=net.fusion_graph(sub_model_path)
-        
+
         config = tf.ConfigProto(allow_soft_placement=True)  
         config.gpu_options.per_process_gpu_memory_fraction = 0.7 
         config.gpu_options.allow_growth = True
@@ -263,9 +275,8 @@ if __name__ == '__main__':
                 print("the image nums : {}/{}".format(num,len(image_names[:1000])))
                 
                 image, label = load_sample(images_dir, labels_dir, file)
-                # keshihua
                 image, label = preprocess_for_val(image, label)
-                # keshihua
+   
 
                 if True:
                     image = np.pad(image, ((0, 0), (0, 8), (0, 0), (0, 0)), mode='constant')
