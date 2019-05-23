@@ -135,16 +135,16 @@ class FCN8(Network):
             .max_pool(2, 2, 2, 2, name='pool2', padding="VALID")
 
             .conv(3, 3, 48, 1, 1, name='conv3_1', fl_w=8, fl=3, fl_y=2, rs=9, rate=1)
-            .conv(3, 3, 49, 1, 1, name='conv3_2', fl_w=8, fl=2, fl_y=2, rs=7, rate=1)
-            .conv(3, 3, 50, 1, 1, name='conv3_3', fl_w=8, fl=2, fl_y=3, rs=8, rate=1)
+            .conv(3, 3, 49, 1, 1, name='conv3_2', fl_w=9, fl=2, fl_y=2, rs=9, rate=1)
+            .conv(3, 3, 50, 1, 1, name='conv3_3', fl_w=8, fl=2, fl_y=3, rs=7, rate=1)
             .max_pool(2, 2, 2, 2, name='pool3', padding="VALID")  #
 
-            .conv(3, 3, 76, 1, 1, name='conv4_1', fl_w=8, fl=3, fl_y=4, rs=8, rate=1)
-            .conv(3, 3, 56, 1, 1, name='conv4_2', fl_w=8, fl=4, fl_y=4, rs=7, rate=1)
-            .conv(3, 3, 62, 1, 1, name='conv4_3', fl_w=8, fl=4, fl_y=5, rs=8, rate=1)
+            .conv(3, 3, 76, 1, 1, name='conv4_1', fl_w=8, fl=3, fl_y=4, rs=7, rate=1)
+            .conv(3, 3, 56, 1, 1, name='conv4_2', fl_w=9, fl=4, fl_y=4, rs=9, rate=1)
+            .conv(3, 3, 62, 1, 1, name='conv4_3', fl_w=8, fl=4, fl_y=5, rs=7, rate=1)
             .max_pool(2, 2, 2, 2, name='pool4', padding="VALID")  #
 
-            .conv(3, 3, 82, 1, 1, name='conv5_1', fl_w=8, fl=5, fl_y=4, rs=8, rate=1)
+            .conv(3, 3, 82, 1, 1, name='conv5_1', fl_w=8, fl=5, fl_y=4, rs=9, rate=1)
             .conv(3, 3, 39, 1, 1, name='conv5_2', fl_w=8, fl=4, fl_y=4, rs=8, rate=1)
             .conv(3, 3, 128, 1, 1, name='conv5_3', fl_w=8, fl=4, fl_y=3, rs=9, rate=1)
             .max_pool(2, 2, 2, 2, name='pool5', padding="VALID")  # 
@@ -153,11 +153,11 @@ class FCN8(Network):
             # .ResizeBilinear(name='pool5_Conv_Upsampled'))  # new opreation
 
         (self.feed('pool4')
-            .conv(1, 1, 9, 1, 1, name='pool4_Conv', fl_w=8, fl=5, fl_y=2, rs=9, rate=1)
+            .conv(1, 1, 9, 1, 1, name='pool4_Conv', fl_w=8, fl=5, fl_y=2, rs=11, rate=1)
             .inverse_quantization(name='pool4_Conv_dequan',fl_y=2))
 
         (self.feed('pool3')
-            .conv(1, 1, 9, 1, 1, name='pool3_Conv', fl_w=7, fl=3, fl_y=3, rs=8, rate=1)
+            .conv(1, 1, 9, 1, 1, name='pool3_Conv', fl_w=8, fl=3, fl_y=3, rs=8, rate=1)
             .inverse_quantization(name='pool3_Conv_dequan',fl_y=3))
 
         # (self.feed('pool4_Conv',

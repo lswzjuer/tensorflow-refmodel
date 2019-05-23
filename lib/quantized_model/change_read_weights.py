@@ -12,7 +12,7 @@ def read_show(path_,output_path):
         sample_dict['biases']=bias
         new_name=lay_name[:-7]
         new_dict[new_name]=sample_dict
-        print('name: {}  weights hsape: {}  biases shape: {}'.format(new_name,weight.shape,bias.shape))
+        print('name: {}  weights shape: {}  biases shape: {}'.format(new_name,weight.shape,bias.shape))
     # print(new_dict)
     with open(output_path,'wb') as f :
         np.save(f,new_dict)
