@@ -1,0 +1,18 @@
+PATH:
+    DATA_PATH: /data/liuzili/data/coco/val2017/
+
+OUTPUT:
+    WEIGHT_BIT_TABLE: ./seg3_workdir/weight.table
+    FEAT_BIT_TABLE: ./seg3_workdir/feat.table
+    WEIGHT_DIR: ./seg3_workdir/weight
+    BIAS_DIR: ./seg3_workdir/bias
+    FINAL_BIAS_DIR: ./seg3_workdir/new_bias
+
+SETTINGS:
+    GPU: 0
+    WORKER_NUM: 12
+    INTERVAL_NUM: 2048
+    STATISTIC: 1
+    MAX_CALI_IMG_NUM: 400
+    MAX_SHIFT: 12
+    SUPPORT_DILATION: False
