@@ -22,6 +22,8 @@ lib_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../lib'))
 add_path(lib_path)
 
 from networks.ssdnet import SSD
+from networks.ssdnet_3 import SSD_3
+from networks.ssdnet_4 import SSD_4
 
 
 def _evaluate_predictions(annotations_dir, results):
@@ -56,6 +58,7 @@ if __name__ == '__main__':
     parser.add_argument('--anchor_file', type=str, help='Full path to model anchor file.')
     parser.add_argument('--skip', type=int, default=4, help='Frame skip in videos (default is 4 for evaluation).')
     parser.add_argument('--result_file', type=str, default=None, help='Stores results in result file.')
+    parser.add_argument('--choose', type=int, default=0, help='Stores results in result file.')
     args = parser.parse_args()
 
     nms_params = dict(thr=0.7, top_k=125, mode="max")
@@ -67,6 +70,7 @@ if __name__ == '__main__':
     anchors = load_anchors(args.anchor_file)
 
     skip = args.skip
+    choose_num=args.choose
     sub_model_path=args.sub_model
     model_dir=args.pb_file
 
@@ -74,7 +78,13 @@ if __name__ == '__main__':
     with tf.Graph().as_default() as graph:
 
         # load graph and fusion sub_graph
-        net=SSD(is_Hardware=True)
+        if choose_num==0:
+            net=SSD(is_Hardware=True)
+        elif choose_num==1:
+            net=SSD_3(is_Hardware=True)
+        else:
+            net=SSD_4(is_Hardware=True)
+            
         out_put=net.fusion_graph(sub_model_path)
         results=[]
         

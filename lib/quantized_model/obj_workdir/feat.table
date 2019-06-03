@@ -1,0 +1,23 @@
+image 5
+conv1_1/BiasAdd 4 5
+conv1_2/BiasAdd 3 4
+conv2_1/BiasAdd 3 3
+conv2_2/BiasAdd 3 3
+conv3_1/BiasAdd 3 3
+conv3_2/BiasAdd 2 3
+conv3_3/BiasAdd 2 2
+conv4_1/BiasAdd 2 2
+conv4_2/BiasAdd 0 2
+conv4_3/BiasAdd 0 0
+conv5_1/BiasAdd -1 0
+conv5_2/BiasAdd -2 -1
+conv5_3/BiasAdd -1 -2
+conv3_3_cls/BiasAdd 0 2
+conv3_3_reg/BiasAdd 4 2
+conv4_3_cls/BiasAdd 0 0
+conv4_3_reg/BiasAdd 4 0
+conv5_3_cls/BiasAdd 0 -1
+conv5_3_reg/BiasAdd 4 -1
+classes_head/concat 0 0 0 0
+bbox_coords/concat 4 4 4 4
+targets/concat 6 4
