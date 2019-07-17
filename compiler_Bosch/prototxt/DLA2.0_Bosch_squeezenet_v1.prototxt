@@ -1,0 +1,611 @@
+# maxpooling pad may have a problem
+
+name: "squeezenet_v1_tf_graph"
+
+input: "image"
+input_shape{
+    dim: 1
+    dim: 3
+    dim: 1080
+    dim: 1920
+}
+
+layer {
+    name: "conv1_convolution"
+    type: "Convolution"
+    bottom: "image"
+    top: "conv1_convolution"
+    convolution_param {
+        num_output: 64
+        kernel_size: 3
+        pad: 1
+        stride: 2
+    }
+}
+
+layer {
+    name: "conv1_Relu"
+    type: "ReLU"
+    bottom: "conv1_convolution"
+    top: "conv1_Relu"
+}
+
+layer {
+    name: "maxpool1_MaxPool"
+    type: "Pooling"
+    bottom: "conv1_Relu"
+    top: "maxpool1_MaxPool"
+    pooling_param {
+        pool: MAX
+        kernel_size: 3
+        stride: 2
+    }
+}
+
+layer {
+    name: "fire2_squeeze1x1_convolution"
+    type: "Convolution"
+    bottom: "maxpool1_MaxPool"
+    top: "fire2_squeeze1x1_convolution"
+    convolution_param {
+        num_output: 16
+        kernel_size: 1
+        pad: 0
+        stride: 1
+    }
+}
+
+layer {
+    name: "fire2_squeeze1x1_Relu"
+    type: "ReLU"
+    bottom: "fire2_squeeze1x1_convolution"
+    top: "fire2_squeeze1x1_Relu"
+}
+
+layer {
+    name: "fire2_expand1x1_convolution"
+    type: "Convolution"
+    bottom: "fire2_squeeze1x1_Relu"
+    top: "fire2_expand1x1_convolution"
+    convolution_param {
+        num_output: 64
+        kernel_size: 1
+        pad: 0
+        stride: 1
+    }
+}
+
+layer {
+    name: "fire2_expand1x1_Relu"
+    type: "ReLU"
+    bottom: "fire2_expand1x1_convolution"
+    top: "fire2_expand1x1_Relu"
+}
+
+layer {
+    name: "fire2_expand3x3_convolution"
+    type: "Convolution"
+    bottom: "fire2_squeeze1x1_Relu"
+    top: "fire2_expand3x3_convolution"
+    convolution_param {
+        num_output: 64
+        kernel_size: 3
+        pad: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "fire2_expand3x3_Relu"
+    type: "ReLU"
+    bottom: "fire2_expand3x3_convolution"
+    top: "fire2_expand3x3_Relu"
+}
+
+layer {
+    name: "fire2_concat_concat"
+    type: "Concat"
+    bottom: "fire2_expand1x1_Relu"
+    bottom: "fire2_expand3x3_Relu"
+    top: "fire2_concat_concat"
+}
+
+layer {
+    name: "fire3_squeeze1x1_convolution"
+    type: "Convolution"
+    bottom: "fire2_concat_concat"
+    top: "fire3_squeeze1x1_convolution"
+    convolution_param {
+        num_output: 16
+        kernel_size: 1
+        pad: 0
+        stride: 1
+    }
+}
+
+layer {
+    name: "fire3_squeeze1x1_Relu"
+    type: "ReLU"
+    bottom: "fire3_squeeze1x1_convolution"
+    top: "fire3_squeeze1x1_Relu"
+}
+
+layer {
+    name: "fire3_expand1x1_convolution"
+    type: "Convolution"
+    bottom: "fire3_squeeze1x1_Relu"
+    top: "fire3_expand1x1_convolution"
+    convolution_param {
+        num_output: 64
+        kernel_size: 1
+        pad: 0
+        stride: 1
+    }
+}
+
+layer {
+    name: "fire3_expand1x1_Relu"
+    type: "ReLU"
+    bottom: "fire3_expand1x1_convolution"
+    top: "fire3_expand1x1_Relu"
+}
+
+layer {
+    name: "fire3_expand3x3_convolution"
+    type: "Convolution"
+    bottom: "fire3_squeeze1x1_Relu"
+    top: "fire3_expand3x3_convolution"
+    convolution_param {
+        num_output: 64
+        kernel_size: 3
+        pad: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "fire3_expand3x3_Relu"
+    type: "ReLU"
+    bottom: "fire3_expand3x3_convolution"
+    top: "fire3_expand3x3_Relu"
+}
+
+layer {
+    name: "fire3_concat_concat"
+    type: "Concat"
+    bottom: "fire3_expand1x1_Relu"
+    bottom: "fire3_expand3x3_Relu"
+    top: "fire3_concat_concat"
+}
+
+layer {
+    name: "maxpool3_MaxPool"
+    type: "Pooling"
+    bottom: "fire3_concat_concat"
+    top: "maxpool3_MaxPool"
+    pooling_param {
+        pool: MAX
+        kernel_size: 3
+        stride: 2
+    }
+}
+
+layer {
+    name: "fire4_squeeze1x1_convolution"
+    type: "Convolution"
+    bottom: "maxpool3_MaxPool"
+    top: "fire4_squeeze1x1_convolution"
+    convolution_param {
+        num_output: 32
+        kernel_size: 1
+        pad: 0
+        stride: 1
+    }
+}
+
+layer {
+    name: "fire4_squeeze1x1_Relu"
+    type: "ReLU"
+    bottom: "fire4_squeeze1x1_convolution"
+    top: "fire4_squeeze1x1_Relu"
+}
+
+layer {
+    name: "fire4_expand1x1_convolution"
+    type: "Convolution"
+    bottom: "fire4_squeeze1x1_Relu"
+    top: "fire4_expand1x1_convolution"
+    convolution_param {
+        num_output: 128
+        kernel_size: 1
+        pad: 0
+        stride: 1
+    }
+}
+
+layer {
+    name: "fire4_expand1x1_Relu"
+    type: "ReLU"
+    bottom: "fire4_expand1x1_convolution"
+    top: "fire4_expand1x1_Relu"
+}
+
+layer {
+    name: "fire4_expand3x3_convolution"
+    type: "Convolution"
+    bottom: "fire4_squeeze1x1_Relu"
+    top: "fire4_expand3x3_convolution"
+    convolution_param {
+        num_output: 128
+        kernel_size: 3
+        pad: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "fire4_expand3x3_Relu"
+    type: "ReLU"
+    bottom: "fire4_expand3x3_convolution"
+    top: "fire4_expand3x3_Relu"
+}
+
+layer {
+    name: "fire4_concat_concat"
+    type: "Concat"
+    bottom: "fire4_expand1x1_Relu"
+    bottom: "fire4_expand3x3_Relu"
+    top: "fire4_concat_concat"
+}
+
+layer {
+    name: "fire5_squeeze1x1_convolution"
+    type: "Convolution"
+    bottom: "fire4_concat_concat"
+    top: "fire5_squeeze1x1_convolution"
+    convolution_param {
+        num_output: 32
+        kernel_size: 1
+        pad: 0
+        stride: 1
+    }
+}
+
+layer {
+    name: "fire5_squeeze1x1_Relu"
+    type: "ReLU"
+    bottom: "fire5_squeeze1x1_convolution"
+    top: "fire5_squeeze1x1_Relu"
+}
+
+layer {
+    name: "fire5_expand1x1_convolution"
+    type: "Convolution"
+    bottom: "fire5_squeeze1x1_Relu"
+    top: "fire5_expand1x1_convolution"
+    convolution_param {
+        num_output: 128
+        kernel_size: 1
+        pad: 0
+        stride: 1
+    }
+}
+
+layer {
+    name: "fire5_expand1x1_Relu"
+    type: "ReLU"
+    bottom: "fire5_expand1x1_convolution"
+    top: "fire5_expand1x1_Relu"
+}
+
+layer {
+    name: "fire5_expand3x3_convolution"
+    type: "Convolution"
+    bottom: "fire5_squeeze1x1_Relu"
+    top: "fire5_expand3x3_convolution"
+    convolution_param {
+        num_output: 128
+        kernel_size: 3
+        pad: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "fire5_expand3x3_Relu"
+    type: "ReLU"
+    bottom: "fire5_expand3x3_convolution"
+    top: "fire5_expand3x3_Relu"
+}
+
+layer {
+    name: "fire5_concat_concat"
+    type: "Concat"
+    bottom: "fire5_expand1x1_Relu"
+    bottom: "fire5_expand3x3_Relu"
+    top: "fire5_concat_concat"
+}
+
+layer {
+    name: "maxpool5_MaxPool"
+    type: "Pooling"
+    bottom: "fire5_concat_concat"
+    top: "maxpool5_MaxPool"
+    pooling_param {
+        pool: MAX
+        kernel_size: 3
+        stride: 2
+    }
+}
+
+layer {
+    name: "fire6_squeeze1x1_convolution"
+    type: "Convolution"
+    bottom: "maxpool5_MaxPool"
+    top: "fire6_squeeze1x1_convolution"
+    convolution_param {
+        num_output: 48
+        kernel_size: 1
+        pad: 0
+        stride: 1
+    }
+}
+
+layer {
+    name: "fire6_squeeze1x1_Relu"
+    type: "ReLU"
+    bottom: "fire6_squeeze1x1_convolution"
+    top: "fire6_squeeze1x1_Relu"
+}
+
+layer {
+    name: "fire6_expand1x1_convolution"
+    type: "Convolution"
+    bottom: "fire6_squeeze1x1_Relu"
+    top: "fire6_expand1x1_convolution"
+    convolution_param {
+        num_output: 192
+        kernel_size: 1
+        pad: 0
+        stride: 1
+    }
+}
+
+layer {
+    name: "fire6_expand1x1_Relu"
+    type: "ReLU"
+    bottom: "fire6_expand1x1_convolution"
+    top: "fire6_expand1x1_Relu"
+}
+
+layer {
+    name: "fire6_expand3x3_convolution"
+    type: "Convolution"
+    bottom: "fire6_squeeze1x1_Relu"
+    top: "fire6_expand3x3_convolution"
+    convolution_param {
+        num_output: 192
+        kernel_size: 3
+        pad: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "fire6_expand3x3_Relu"
+    type: "ReLU"
+    bottom: "fire6_expand3x3_convolution"
+    top: "fire6_expand3x3_Relu"
+}
+
+layer {
+    name: "fire6_concat_concat"
+    type: "Concat"
+    bottom: "fire6_expand1x1_Relu"
+    bottom: "fire6_expand3x3_Relu"
+    top: "fire6_concat_concat"
+}
+
+layer {
+    name: "fire7_squeeze1x1_convolution"
+    type: "Convolution"
+    bottom: "fire6_concat_concat"
+    top: "fire7_squeeze1x1_convolution"
+    convolution_param {
+        num_output: 48
+        kernel_size: 1
+        pad: 0
+        stride: 1
+    }
+}
+
+layer {
+    name: "fire7_squeeze1x1_Relu"
+    type: "ReLU"
+    bottom: "fire7_squeeze1x1_convolution"
+    top: "fire7_squeeze1x1_Relu"
+}
+
+layer {
+    name: "fire7_expand1x1_convolution"
+    type: "Convolution"
+    bottom: "fire7_squeeze1x1_Relu"
+    top: "fire7_expand1x1_convolution"
+    convolution_param {
+        num_output: 192
+        kernel_size: 1
+        pad: 0
+        stride: 1
+    }
+}
+
+layer {
+    name: "fire7_expand1x1_Relu"
+    type: "ReLU"
+    bottom: "fire7_expand1x1_convolution"
+    top: "fire7_expand1x1_Relu"
+}
+
+layer {
+    name: "fire7_expand3x3_convolution"
+    type: "Convolution"
+    bottom: "fire7_squeeze1x1_Relu"
+    top: "fire7_expand3x3_convolution"
+    convolution_param {
+        num_output: 192
+        kernel_size: 3
+        pad: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "fire7_expand3x3_Relu"
+    type: "ReLU"
+    bottom: "fire7_expand3x3_convolution"
+    top: "fire7_expand3x3_Relu"
+}
+
+layer {
+    name: "fire7_concat_concat"
+    type: "Concat"
+    bottom: "fire7_expand1x1_Relu"
+    bottom: "fire7_expand3x3_Relu"
+    top: "fire7_concat_concat"
+}
+
+layer {
+    name: "fire8_squeeze1x1_convolution"
+    type: "Convolution"
+    bottom: "fire7_concat_concat"
+    top: "fire8_squeeze1x1_convolution"
+    convolution_param {
+        num_output: 64
+        kernel_size: 1
+        pad: 0
+        stride: 1
+    }
+}
+
+layer {
+    name: "fire8_squeeze1x1_Relu"
+    type: "ReLU"
+    bottom: "fire8_squeeze1x1_convolution"
+    top: "fire8_squeeze1x1_Relu"
+}
+
+layer {
+    name: "fire8_expand1x1_convolution"
+    type: "Convolution"
+    bottom: "fire8_squeeze1x1_Relu"
+    top: "fire8_expand1x1_convolution"
+    convolution_param {
+        num_output: 256
+        kernel_size: 1
+        pad: 0
+        stride: 1
+    }
+}
+
+layer {
+    name: "fire8_expand1x1_Relu"
+    type: "ReLU"
+    bottom: "fire8_expand1x1_convolution"
+    top: "fire8_expand1x1_Relu"
+}
+
+layer {
+    name: "fire8_expand3x3_convolution"
+    type: "Convolution"
+    bottom: "fire8_squeeze1x1_Relu"
+    top: "fire8_expand3x3_convolution"
+    convolution_param {
+        num_output: 256
+        kernel_size: 3
+        pad: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "fire8_expand3x3_Relu"
+    type: "ReLU"
+    bottom: "fire8_expand3x3_convolution"
+    top: "fire8_expand3x3_Relu"
+}
+
+layer {
+    name: "fire8_concat_concat"
+    type: "Concat"
+    bottom: "fire8_expand1x1_Relu"
+    bottom: "fire8_expand3x3_Relu"
+    top: "fire8_concat_concat"
+}
+
+layer {
+    name: "fire9_squeeze1x1_convolution"
+    type: "Convolution"
+    bottom: "fire8_concat_concat"
+    top: "fire9_squeeze1x1_convolution"
+    convolution_param {
+        num_output: 64
+        kernel_size: 1
+        pad: 0
+        stride: 1
+    }
+}
+
+layer {
+    name: "fire9_squeeze1x1_Relu"
+    type: "ReLU"
+    bottom: "fire9_squeeze1x1_convolution"
+    top: "fire9_squeeze1x1_Relu"
+}
+
+layer {
+    name: "fire9_expand1x1_convolution"
+    type: "Convolution"
+    bottom: "fire9_squeeze1x1_Relu"
+    top: "fire9_expand1x1_convolution"
+    convolution_param {
+        num_output: 256
+        kernel_size: 1
+        pad: 0
+        stride: 1
+    }
+}
+
+layer {
+    name: "fire9_expand1x1_Relu"
+    type: "ReLU"
+    bottom: "fire9_expand1x1_convolution"
+    top: "fire9_expand1x1_Relu"
+}
+
+layer {
+    name: "fire9_expand3x3_convolution"
+    type: "Convolution"
+    bottom: "fire9_squeeze1x1_Relu"
+    top: "fire9_expand3x3_convolution"
+    convolution_param {
+        num_output: 256
+        kernel_size: 3
+        pad: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "fire9_expand3x3_Relu"
+    type: "ReLU"
+    bottom: "fire9_expand3x3_convolution"
+    top: "fire9_expand3x3_Relu"
+}
+
+layer {
+    name: "fire9_concat_concat"
+    type: "Concat"
+    bottom: "fire9_expand1x1_Relu"
+    bottom: "fire9_expand3x3_Relu"
+    top: "fire9_concat_concat"
+}

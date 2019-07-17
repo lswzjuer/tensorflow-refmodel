@@ -1,0 +1,399 @@
+# pooling layers might have a problem with padding
+# only the small_vgg part of lstm is finished
+
+name: "conv_lstm_tf_graph"
+
+input: "image"
+input_shape {
+    dim: 1
+    dim: 3
+    dim: 80
+    dim: 120
+}
+
+layer {
+    name: "conv1_1"
+    type: "Convolution"
+    bottom: "image"
+    top: "conv1_1"
+    convolution_param {
+        num_output: 16
+        kernel_size: 3
+        pad: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv1_1_Relu"
+    type: "ReLU"
+    bottom: "conv1_1"
+    top: "conv1_1_Relu"
+}
+
+layer {
+    name: "conv1_2"
+    type: "Convolution"
+    bottom: "conv1_1_Relu"
+    top: "conv1_2"
+    convolution_param {
+        num_output: 16
+        kernel_size: 3
+        pad: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv1_2_Relu"
+    type: "ReLU"
+    bottom: "conv1_2"
+    top: "conv1_2_Relu"
+}
+
+layer {
+    name: "pool1"
+    type: "Pooling"
+    bottom: "conv1_2_Relu"
+    top: "pool1"
+    pooling_param {
+        kernel_size: 2
+        stride: 2
+        pool: MAX
+    }
+}
+
+layer {
+    name: "conv2_1"
+    type: "Convolution"
+    bottom: "pool1"
+    top: "conv2_1"
+    convolution_param {
+        num_output: 32
+        kernel_size: 3
+        pad: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv2_1_Relu"
+    type: "ReLU"
+    bottom: "conv2_1"
+    top: "conv2_1_Relu"
+}
+
+layer {
+    name: "conv2_2"
+    type: "Convolution"
+    bottom: "conv2_1_Relu"
+    top: "conv2_2"
+    convolution_param {
+        num_output: 32
+        kernel_size: 3
+        pad: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv2_2_Relu"
+    type: "ReLU"
+    bottom: "conv2_2"
+    top: "conv2_2_Relu"
+}
+
+layer {
+    name: "pool2"
+    type: "Pooling"
+    bottom: "conv2_2_Relu"
+    top: "pool2"
+    pooling_param {
+        kernel_size: 2
+        stride: 2
+        pool: MAX
+    }
+}
+
+layer {
+    name: "conv3_1"
+    type: "Convolution"
+    bottom: "pool2"
+    top: "conv3_1"
+    convolution_param {
+        num_output: 64
+        kernel_size: 3
+        pad: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv3_1_Relu"
+    type: "ReLU"
+    bottom: "conv3_1"
+    top: "conv3_1_Relu"
+}
+
+layer {
+    name: "conv3_2"
+    type: "Convolution"
+    bottom: "conv3_1_Relu"
+    top: "conv3_2"
+    convolution_param {
+        num_output: 64
+        kernel_size: 3
+        pad: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv3_2_Relu"
+    type: "ReLU"
+    bottom: "conv3_2"
+    top: "conv3_2_Relu"
+}
+
+
+layer {
+    name: "conv3_3"
+    type: "Convolution"
+    bottom: "conv3_2_Relu"
+    top: "conv3_3"
+    convolution_param {
+        num_output: 64
+        kernel_size: 3
+        pad: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv3_3_Relu"
+    type: "ReLU"
+    bottom: "conv3_3"
+    top: "conv3_3_Relu"
+}
+
+layer {
+    name: "pool3"
+    type: "Pooling"
+    bottom: "conv3_3_Relu"
+    top: "pool3"
+    pooling_param {
+        kernel_size: 2
+        stride: 2
+        pool: MAX
+    }
+}
+
+layer {
+    name: "conv4_1"
+    type: "Convolution"
+    bottom: "pool3"
+    top: "conv4_1" 
+    convolution_param {
+        num_output: 128
+        kernel_size: 3
+        pad: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv4_1_Relu"
+    type: "ReLU"
+    bottom: "conv4_1"
+    top: "conv4_1_Relu"
+}
+
+layer {
+    name: "conv4_2"
+    type: "Convolution"
+    bottom: "conv4_1_Relu"
+    top: "conv4_2"
+    convolution_param {
+        num_output: 128
+        kernel_size: 3
+        pad: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv4_2_Relu"
+    type: "ReLU"
+    bottom: "conv4_2"
+    top: "conv4_2_Relu"
+}
+
+
+layer {
+    name: "conv4_3"
+    type: "Convolution"
+    bottom: "conv4_2_Relu"
+    top: "conv4_3"
+    convolution_param {
+        num_output: 128
+        kernel_size: 3
+        pad: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv4_3_Relu"
+    type: "ReLU"
+    bottom: "conv4_3"
+    top: "conv4_3_Relu"
+}
+
+layer {
+    name: "pool4"
+    type: "Pooling"
+    bottom: "conv4_3_Relu"
+    top: "pool4"
+    pooling_param {
+        kernel_size: 2
+        stride: 2
+        pool: MAX
+    }
+}
+
+layer {
+    name: "conv5_1"
+    type: "Convolution"
+    bottom: "pool4"
+    top: "conv5_1"
+    convolution_param {
+        num_output: 128
+        kernel_size: 3
+        pad: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv5_1_Relu"
+    type: "ReLU"
+    bottom: "conv5_1"
+    top: "conv5_1_Relu"
+}
+
+layer {
+    name: "conv5_2"
+    type: "Convolution"
+    bottom: "conv5_1_Relu"
+    top: "conv5_2"
+    convolution_param {
+        num_output: 128
+        kernel_size: 3
+        pad: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv5_2_Relu"
+    type: "ReLU"
+    bottom: "conv5_2"
+    top: "conv5_2_Relu"
+}
+
+layer {
+    name: "conv5_3"
+    type: "Convolution"
+    bottom: "conv5_2_Relu"
+    top: "conv5_3"
+    convolution_param {
+        num_output: 128
+        kernel_size: 3
+        pad: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv5_3_Relu"
+    type: "ReLU"
+    bottom: "conv5_3"
+    top: "conv5_3_Relu"
+}
+
+layer {
+    name: "pool5"
+    type: "Pooling"
+    bottom: "conv5_3_Relu"
+    top: "pool5"
+    pooling_param {
+        kernel_size: 2
+        stride: 2
+        pool: MAX
+    }
+}
+
+layer {
+    name: "gap_1"
+    type: "Pooling"
+    bottom: "pool5"
+    top: "gap_1"
+    pooling_param {
+        pool: AVE
+        global_pooling: true
+    }
+}
+
+layer {
+    name: "fc6"
+    type: "InnerProduct"
+    bottom: "gap_1"
+    top: "fc6"
+    inner_product_param {
+        num_output: 512
+        bias_filler{
+            type: "constant"
+        }
+    }
+}
+
+layer {
+    name: "fc6_Relu"
+    type: "ReLU"
+    bottom: "fc6"
+    top: "fc6_Relu"
+}
+
+layer {
+    name: "fc7"
+    type: "InnerProduct"
+    bottom: "fc6_Relu"
+    top: "fc7"
+    inner_product_param {
+        num_output: 512
+        bias_filler{
+            type: "constant"
+        }
+    }
+}
+
+layer {
+    name: "fc7_Relu"
+    type: "ReLU"
+    bottom: "fc7"
+    top: "fc7_Relu"
+}
+
+layer {
+    name: "pose"
+    type: "InnerProduct"
+    bottom: "fc7_Relu"
+    top: "pose"
+    inner_product_param {
+        num_output: 28
+        bias_filler{
+            type: "constant"
+        }
+    }
+}
+

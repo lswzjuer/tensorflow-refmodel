@@ -1,0 +1,1206 @@
+# All batch-norms are omitted
+name: "sparsenet_tf_graph"
+
+input: "image"
+input_shape{
+    dim: 1
+    dim: 3
+    dim: 1080
+    dim: 1920
+}
+
+layer {
+    name: "conv2d_1"
+    type: "Convolution"
+    bottom: "image"
+    top: "conv2d_1"
+    convolution_param {
+        num_output: 24
+        pad: 3
+        kernel_size: 7
+        stride: 2
+    }
+}
+
+layer {
+    name: "activation_1"
+    type: "ReLU"
+    bottom: "conv2d_1"
+    top: "activation_1"
+}
+
+# might be a problem with padding
+layer {
+    name: "max_pooling2d_1"
+    type: "Pooling"
+    bottom: "activation_1"
+    top: "max_pooling2d_1"
+    pooling_param {
+        kernel_size: 3
+        stride: 2
+        pool: MAX
+    }
+}
+
+# conv_block
+layer {
+    name: "conv2d_2"
+    type: "Convolution"
+    bottom: "max_pooling2d_1"
+    top: "conv2d_2"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_2"
+    type: "ReLU"
+    bottom: "conv2d_2"
+    top: "activation_2"
+}
+
+layer {
+    name: "concatenate_1"
+    type: "Concat"
+    bottom: "max_pooling2d_1"
+    bottom: "activation_2"
+    top: "concatenate_1"
+}
+
+# conv_block_1
+layer {
+    name: "conv2d_3"
+    type: "Convolution"
+    bottom: "concatenate_1"
+    top: "conv2d_3"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_3"
+    type: "ReLU"
+    bottom: "conv2d_3"
+    top: "activation_3"
+}
+
+layer {
+    name: "concatenate_2"
+    type: "Concat"
+    bottom: "activation_2"
+    bottom: "activation_3"
+    top: "concatenate_2"
+}
+
+# conv_block_2
+layer {
+    name: "conv2d_4"
+    type: "Convolution"
+    bottom: "concatenate_2"
+    top: "conv2d_4"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_4"
+    type: "ReLU"
+    bottom: "conv2d_4"
+    top: "activation_4"
+}
+
+layer {
+    name: "concatenate_3"
+    type: "Concat"
+    bottom: "activation_4"
+    bottom: "activation_3"
+    bottom: "max_pooling2d_1"
+    top: "concatenate_3"
+}
+
+# conv_block_3
+layer {
+    name: "conv2d_5"
+    type: "Convolution"
+    bottom: "concatenate_3"
+    top: "conv2d_5"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_5"
+    type: "ReLU"
+    bottom: "conv2d_5"
+    top: "activation_5"
+}
+
+layer {
+    name: "concatenate_4"
+    type: "Concat"
+    bottom: "activation_5"
+    bottom: "activation_4"
+    bottom: "activation_2"
+    top: "concatenate_4"
+}
+
+# conv_block_4
+layer {
+    name: "conv2d_6"
+    type: "Convolution"
+    bottom: "concatenate_4"
+    top: "conv2d_6"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_6"
+    type: "ReLU"
+    bottom: "conv2d_6"
+    top: "activation_6"
+}
+
+layer {
+    name: "concatenate_5"
+    type: "Concat"
+    bottom: "activation_6"
+    bottom: "activation_5"
+    bottom: "activation_3"
+    top: "concatenate_5"
+}
+
+# conv_block_5
+layer {
+    name: "conv2d_7"
+    type: "Convolution"
+    bottom: "concatenate_5"
+    top: "conv2d_7"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_7"
+    type: "ReLU"
+    bottom: "conv2d_7"
+    top: "activation_7"
+}
+
+layer {
+    name: "concatenate_6"
+    type: "Concat"
+    bottom: "activation_7"
+    bottom: "activation_6"
+    bottom: "activation_4"
+    top: "concatenate_6"
+}
+
+# conv_block_6
+layer {
+    name: "conv2d_8"
+    type: "Convolution"
+    bottom: "concatenate_6"
+    top: "conv2d_8"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_8"
+    type: "ReLU"
+    bottom: "conv2d_8"
+    top: "activation_8"
+}
+
+layer {
+    name: "concatenate_7"
+    type: "Concat"
+    bottom: "activation_8"
+    bottom: "activation_7"
+    bottom: "activation_5"
+    bottom: "max_pooling2d_1"
+    top: "concatenate_7"
+}
+
+# conv_block_7
+layer {
+    name: "conv2d_9"
+    type: "Convolution"
+    bottom: "concatenate_7"
+    top: "conv2d_9"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_9"
+    type: "ReLU"
+    bottom: "conv2d_9"
+    top: "activation_9"
+}
+
+layer {
+    name: "concatenate_8"
+    type: "Concat"
+    bottom: "activation_9"
+    bottom: "activation_8"
+    bottom: "activation_6"
+    bottom: "activation_2"
+    top: "concatenate_8"
+}
+
+# conv_block_8
+layer {
+    name: "conv2d_10"
+    type: "Convolution"
+    bottom: "concatenate_8"
+    top: "conv2d_10"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_10"
+    type: "ReLU"
+    bottom: "conv2d_10"
+    top: "activation_10"
+}
+
+layer {
+    name: "concatenate_9"
+    type: "Concat"
+    bottom: "activation_10"
+    bottom: "activation_9"
+    bottom: "activation_7"
+    bottom: "activation_3"
+    top: "concatenate_9"
+}
+
+# conv_block_9
+layer {
+    name: "conv2d_11"
+    type: "Convolution"
+    bottom: "concatenate_9"
+    top: "conv2d_11"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_11"
+    type: "ReLU"
+    bottom: "conv2d_11"
+    top: "activation_11"
+}
+
+layer {
+    name: "concatenate_10"
+    type: "Concat"
+    bottom: "activation_11"
+    bottom: "activation_10"
+    bottom: "activation_8"
+    bottom: "activation_4"
+    top: "concatenate_10"
+}
+
+# conv_block_10
+layer {
+    name: "conv2d_12"
+    type: "Convolution"
+    bottom: "concatenate_10"
+    top: "conv2d_12"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_12"
+    type: "ReLU"
+    bottom: "conv2d_12"
+    top: "activation_12"
+}
+
+layer {
+    name: "concatenate_11"
+    type: "Concat"
+    bottom: "activation_12"
+    bottom: "activation_11"
+    bottom: "activation_9"
+    bottom: "activation_5"
+    top: "concatenate_11"
+}
+
+# conv_block_11
+layer {
+    name: "conv2d_13"
+    type: "Convolution"
+    bottom: "concatenate_11"
+    top: "conv2d_13"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_13"
+    type: "ReLU"
+    bottom: "conv2d_13"
+    top: "activation_13"
+}
+
+layer {
+    name: "concatenate_12"
+    type: "Concat"
+    bottom: "activation_13"
+    bottom: "activation_12"
+    bottom: "activation_10"
+    bottom: "activation_6"
+    top: "concatenate_12"
+}
+
+# transition
+layer {
+    name: "conv2d_14"
+    type: "Convolution"
+    bottom: "concatenate_12"
+    top: "conv2d_14"
+    convolution_param {
+        num_output: 96
+        pad: 0
+        kernel_size: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_14"
+    type: "ReLU"
+    bottom: "conv2d_14"
+    top: "activation_14"
+}
+
+layer {
+    name: "average_pooling2d_1"
+    type: "Pooling"
+    bottom: "activation_14"
+    top: "average_pooling2d_1"
+    pooling_param {
+        kernel_size: 2
+        stride: 2
+        pool: AVE
+    }
+}
+
+# conv_block_12
+layer {
+    name: "conv2d_15"
+    type: "Convolution"
+    bottom: "average_pooling2d_1"
+    top: "conv2d_15"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_15"
+    type: "ReLU"
+    bottom: "conv2d_15"
+    top: "activation_15"
+}
+
+layer {
+    name: "concatenate_13"
+    type: "Concat"
+    bottom: "activation_15"
+    bottom: "average_pooling2d_1"
+    top: "concatenate_13"
+}
+
+# conv_block_13
+layer {
+    name: "conv2d_16"
+    type: "Convolution"
+    bottom: "concatenate_13"
+    top: "conv2d_16"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_16"
+    type: "ReLU"
+    bottom: "conv2d_16"
+    top: "activation_16"
+}
+
+layer {
+    name: "concatenate_14"
+    type: "Concat"
+    bottom: "activation_16"
+    bottom: "activation_15"
+    top: "concatenate_14"
+}
+
+# conv_block_14
+layer {
+    name: "conv2d_17"
+    type: "Convolution"
+    bottom: "concatenate_14"
+    top: "conv2d_17"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_17"
+    type: "ReLU"
+    bottom: "conv2d_17"
+    top: "activation_17"
+}
+
+layer {
+    name: "concatenate_15"
+    type: "Concat"
+    bottom: "activation_17"
+    bottom: "activation_16"
+    bottom: "average_pooling2d_1"
+    top: "concatenate_15"
+}
+
+# conv_block_15
+layer {
+    name: "conv2d_18"
+    type: "Convolution"
+    bottom: "concatenate_15"
+    top: "conv2d_18"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_18"
+    type: "ReLU"
+    bottom: "conv2d_18"
+    top: "activation_18"
+}
+
+layer {
+    name: "concatenate_16"
+    type: "Concat"
+    bottom: "activation_18"
+    bottom: "activation_17"
+    bottom: "activation_15"
+    top: "concatenate_16"
+}
+
+# conv_block_16
+layer {
+    name: "conv2d_19"
+    type: "Convolution"
+    bottom: "concatenate_16"
+    top: "conv2d_19"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_19"
+    type: "ReLU"
+    bottom: "conv2d_19"
+    top: "activation_19"
+}
+
+layer {
+    name: "concatenate_17"
+    type: "Concat"
+    bottom: "activation_19"
+    bottom: "activation_18"
+    bottom: "activation_16"
+    top: "concatenate_17"
+}
+
+# conv_block_17
+layer {
+    name: "conv2d_20"
+    type: "Convolution"
+    bottom: "concatenate_17"
+    top: "conv2d_20"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_20"
+    type: "ReLU"
+    bottom: "conv2d_20"
+    top: "activation_20"
+}
+
+layer {
+    name: "concatenate_18"
+    type: "Concat"
+    bottom: "activation_20"
+    bottom: "activation_19"
+    bottom: "activation_17"
+    top: "concatenate_18"
+}
+
+# conv_block_18
+layer {
+    name: "conv2d_21"
+    type: "Convolution"
+    bottom: "concatenate_18"
+    top: "conv2d_21"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_21"
+    type: "ReLU"
+    bottom: "conv2d_21"
+    top: "activation_21"
+}
+
+layer {
+    name: "concatenate_19"
+    type: "Concat"
+    bottom: "activation_21"
+    bottom: "activation_20"
+    bottom: "activation_18"
+    bottom: "average_pooling2d_1"
+    top: "concatenate_19"
+}
+
+# conv_block_19
+layer {
+    name: "conv2d_22"
+    type: "Convolution"
+    bottom: "concatenate_19"
+    top: "conv2d_22"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_22"
+    type: "ReLU"
+    bottom: "conv2d_22"
+    top: "activation_22"
+}
+
+layer {
+    name: "concatenate_20"
+    type: "Concat"
+    bottom: "activation_22"
+    bottom: "activation_21"
+    bottom: "activation_19"
+    bottom: "activation_15"
+    top: "concatenate_20"
+}
+
+# conv_block_20
+layer {
+    name: "conv2d_23"
+    type: "Convolution"
+    bottom: "concatenate_20"
+    top: "conv2d_23"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_23"
+    type: "ReLU"
+    bottom: "conv2d_23"
+    top: "activation_23"
+}
+
+layer {
+    name: "concatenate_21"
+    type: "Concat"
+    bottom: "activation_23"
+    bottom: "activation_22"
+    bottom: "activation_20"
+    bottom: "activation_16"
+    top: "concatenate_21"
+}
+
+# conv_block_21
+layer {
+    name: "conv2d_24"
+    type: "Convolution"
+    bottom: "concatenate_21"
+    top: "conv2d_24"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_24"
+    type: "ReLU"
+    bottom: "conv2d_24"
+    top: "activation_24"
+}
+
+layer {
+    name: "concatenate_22"
+    type: "Concat"
+    bottom: "activation_24"
+    bottom: "activation_23"
+    bottom: "activation_21"
+    bottom: "activation_17"
+    top: "concatenate_22"
+}
+
+# conv_block_22
+layer {
+    name: "conv2d_25"
+    type: "Convolution"
+    bottom: "concatenate_22"
+    top: "conv2d_25"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_25"
+    type: "ReLU"
+    bottom: "conv2d_25"
+    top: "activation_25"
+}
+
+layer {
+    name: "concatenate_23"
+    type: "Concat"
+    bottom: "activation_25"
+    bottom: "activation_24"
+    bottom: "activation_22"
+    bottom: "activation_18"
+    top: "concatenate_23"
+}
+
+# conv_block_23
+layer {
+    name: "conv2d_26"
+    type: "Convolution"
+    bottom: "concatenate_23"
+    top: "conv2d_26"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_26"
+    type: "ReLU"
+    bottom: "conv2d_26"
+    top: "activation_26"
+}
+
+layer {
+    name: "concatenate_24"
+    type: "Concat"
+    bottom: "activation_26"
+    bottom: "activation_25"
+    bottom: "activation_23"
+    bottom: "activation_19"
+    top: "concatenate_24"
+}
+
+# transition
+layer {
+    name: "conv2d_27"
+    type: "Convolution"
+    bottom: "concatenate_24"
+    top: "conv2d_27"
+    convolution_param {
+        num_output: 96
+        pad: 0
+        kernel_size: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_27"
+    type: "ReLU"
+    bottom: "conv2d_27"
+    top: "activation_27"
+}
+
+# problem with average pooling size
+layer {
+    name: "average_pooling2d_2"
+    type: "Pooling"
+    bottom: "activation_27"
+    top: "average_pooling2d_2"
+    pooling_param {
+        kernel_size: 2
+        stride: 2
+        pool: AVE
+    }
+}
+
+# conv_block_24
+layer {
+    name: "conv2d_28"
+    type: "Convolution"
+    bottom: "average_pooling2d_2"
+    top: "conv2d_28"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_28"
+    type: "ReLU"
+    bottom: "conv2d_28"
+    top: "activation_28"
+}
+
+layer {
+    name: "concatenate_25"
+    type: "Concat"
+    bottom: "activation_28"
+    bottom: "average_pooling2d_2"
+    top: "concatenate_25"
+}
+
+# conv_block_25
+layer {
+    name: "conv2d_29"
+    type: "Convolution"
+    bottom: "concatenate_25"
+    top: "conv2d_29"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_29"
+    type: "ReLU"
+    bottom: "conv2d_29"
+    top: "activation_29"
+}
+
+layer {
+    name: "concatenate_26"
+    type: "Concat"
+    bottom: "activation_29"
+    bottom: "activation_28"
+    top: "concatenate_26"
+}
+
+# conv_block_26
+layer {
+    name: "conv2d_30"
+    type: "Convolution"
+    bottom: "concatenate_26"
+    top: "conv2d_30"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_30"
+    type: "ReLU"
+    bottom: "conv2d_30"
+    top: "activation_30"
+}
+
+layer {
+    name: "concatenate_27"
+    type: "Concat"
+    bottom: "activation_30"
+    bottom: "activation_29"
+    bottom: "average_pooling2d_2"
+    top: "concatenate_27"
+}
+
+# conv_block_27
+layer {
+    name: "conv2d_31"
+    type: "Convolution"
+    bottom: "concatenate_27"
+    top: "conv2d_31"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_31"
+    type: "ReLU"
+    bottom: "conv2d_31"
+    top: "activation_31"
+}
+
+layer {
+    name: "concatenate_28"
+    type: "Concat"
+    bottom: "activation_31"
+    bottom: "activation_30"
+    bottom: "activation_28"
+    top: "concatenate_28"
+}
+
+# conv_block_28
+layer {
+    name: "conv2d_32"
+    type: "Convolution"
+    bottom: "concatenate_28"
+    top: "conv2d_32"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_32"
+    type: "ReLU"
+    bottom: "conv2d_32"
+    top: "activation_32"
+}
+
+layer {
+    name: "concatenate_29"
+    type: "Concat"
+    bottom: "activation_32"
+    bottom: "activation_31"
+    bottom: "activation_29"
+    top: "concatenate_29"
+}
+
+# conv_block_29
+layer {
+    name: "conv2d_33"
+    type: "Convolution"
+    bottom: "concatenate_29"
+    top: "conv2d_33"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_33"
+    type: "ReLU"
+    bottom: "conv2d_33"
+    top: "activation_33"
+}
+
+layer {
+    name: "concatenate_30"
+    type: "Concat"
+    bottom: "activation_33"
+    bottom: "activation_32"
+    bottom: "activation_30"
+    top: "concatenate_30"
+}
+
+# conv_block_30
+layer {
+    name: "conv2d_34"
+    type: "Convolution"
+    bottom: "concatenate_30"
+    top: "conv2d_34"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_34"
+    type: "ReLU"
+    bottom: "conv2d_34"
+    top: "activation_34"
+}
+
+layer {
+    name: "concatenate_31"
+    type: "Concat"
+    bottom: "activation_34"
+    bottom: "activation_33"
+    bottom: "activation_31"
+    bottom: "average_pooling2d_2"
+    top: "concatenate_31"
+}
+
+# conv_block_31
+layer {
+    name: "conv2d_35"
+    type: "Convolution"
+    bottom: "concatenate_31"
+    top: "conv2d_35"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_35"
+    type: "ReLU"
+    bottom: "conv2d_35"
+    top: "activation_35"
+}
+
+layer {
+    name: "concatenate_32"
+    type: "Concat"
+    bottom: "activation_35"
+    bottom: "activation_34"
+    bottom: "activation_32"
+    bottom: "activation_28"
+    top: "concatenate_32"
+}
+
+# conv_block_32
+layer {
+    name: "conv2d_36"
+    type: "Convolution"
+    bottom: "concatenate_32"
+    top: "conv2d_36"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_36"
+    type: "ReLU"
+    bottom: "conv2d_36"
+    top: "activation_36"
+}
+
+layer {
+    name: "concatenate_33"
+    type: "Concat"
+    bottom: "activation_36"
+    bottom: "activation_35"
+    bottom: "activation_33"
+    bottom: "activation_29"
+    top: "concatenate_33"
+}
+
+# conv_block_33
+layer {
+    name: "conv2d_37"
+    type: "Convolution"
+    bottom: "concatenate_33"
+    top: "conv2d_37"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_37"
+    type: "ReLU"
+    bottom: "conv2d_37"
+    top: "activation_37"
+}
+
+layer {
+    name: "concatenate_34"
+    type: "Concat"
+    bottom: "activation_37"
+    bottom: "activation_36"
+    bottom: "activation_34"
+    bottom: "activation_30"
+    top: "concatenate_34"
+}
+
+# conv_block_34
+layer {
+    name: "conv2d_38"
+    type: "Convolution"
+    bottom: "concatenate_34"
+    top: "conv2d_38"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_38"
+    type: "ReLU"
+    bottom: "conv2d_38"
+    top: "activation_38"
+}
+
+layer {
+    name: "concatenate_35"
+    type: "Concat"
+    bottom: "activation_38"
+    bottom: "activation_37"
+    bottom: "activation_35"
+    bottom: "activation_31"
+    top: "concatenate_35"
+}
+
+# conv_block_35
+layer {
+    name: "conv2d_39"
+    type: "Convolution"
+    bottom: "concatenate_35"
+    top: "conv2d_39"
+    convolution_param {
+        num_output: 24
+        pad: 1
+        kernel_size: 3
+        stride: 1
+    }
+}
+
+layer {
+    name: "activation_39"
+    type: "ReLU"
+    bottom: "conv2d_39"
+    top: "activation_39"
+}
+
+layer {
+    name: "concatenate_36"
+    type: "Concat"
+    bottom: "activation_39"
+    bottom: "activation_38"
+    bottom: "activation_36"
+    bottom: "activation_32"
+    top: "concatenate_36"
+}
+
+
+
+

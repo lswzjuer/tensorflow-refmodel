@@ -1,0 +1,821 @@
+# All batch-norms are omitted
+name: "mobilenet_v2_tf_graph"
+
+input: "image"
+input_shape{
+    dim: 1
+    dim: 3
+    dim: 1080
+    dim: 1920
+}
+
+layer {
+    name: "conv1"
+    type: "Convolution"
+    bottom: "image"
+    top: "conv1"
+    convolution_param {
+        num_output: 32
+        pad: 1
+        kernel_size: 3
+        stride: 2
+    }
+}
+
+layer {
+    name: "bneck_conv_dw_0"
+    type: "Convolution"
+    bottom: "conv1"
+    top: "bneck_conv_dw_0"
+    convolution_param {
+        num_output: 32
+        pad: 1
+        kernel_size: 3
+        stride: 1
+        group: 32
+    }
+}
+
+layer {
+    name: "bneck_conv_dw_0_Relu"
+    type: "ReLU"
+    bottom: "bneck_conv_dw_0"
+    top: "bneck_conv_dw_0_Relu"
+}
+# ReLU6
+
+layer {
+    name: "conv_pw_lin_0"
+    type: "Convolution"
+    bottom: "bneck_conv_dw_0_Relu"
+    top: "conv_pw_lin_0"
+    convolution_param {
+        num_output: 16
+        pad: 0
+        kernel_size: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv_exp_1"
+    type: "Convolution"
+    bottom: "conv_pw_lin_0"
+    top: "conv_exp_1"
+    convolution_param {
+      num_output: 96
+      kernel_size: 1
+      pad: 0
+      stride: 1
+    }
+}
+
+layer {
+    name: "conv_exp_1_Relu"
+    type: "ReLU"
+    bottom: "conv_exp_1"
+    top: "conv_exp_1_Relu"
+}
+# ReLU6
+
+layer {
+    name: "bneck_conv_dw_1"
+    type: "Convolution"
+    bottom: "conv_exp_1_Relu"
+    top: "bneck_conv_dw_1"
+    convolution_param {
+        num_output: 96
+        pad: 1
+        kernel_size: 3
+        stride: 2
+        group: 96
+    }
+}
+
+layer {
+    name: "bneck_conv_dw_1_Relu"
+    type: "ReLU"
+    bottom: "bneck_conv_dw_1"
+    top: "bneck_conv_dw_1_Relu"
+}
+# ReLU6
+
+layer {
+    name: "conv_pw_lin_1"
+    type: "Convolution"
+    bottom: "bneck_conv_dw_1_Relu"
+    top: "conv_pw_lin_1"
+    convolution_param {
+        num_output: 24
+        pad: 0
+        kernel_size: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv_exp_2"
+    type: "Convolution"
+    bottom: "conv_pw_lin_1"
+    top: "conv_exp_2"
+    convolution_param {
+      num_output: 144
+      kernel_size: 1
+      pad: 0
+      stride: 1
+    }
+}
+
+layer {
+    name: "conv_exp_2_Relu"
+    type: "ReLU"
+    bottom: "conv_exp_2"
+    top: "conv_exp_2_Relu"
+}
+# ReLU6
+
+layer {
+    name: "bneck_conv_dw_2"
+    type: "Convolution"
+    bottom: "conv_exp_2_Relu"
+    top: "bneck_conv_dw_2"
+    convolution_param {
+        num_output: 144
+        pad: 1
+        kernel_size: 3
+        stride: 1
+        group: 144
+    }
+}
+
+layer {
+    name: "bneck_conv_dw_2_Relu"
+    type: "ReLU"
+    bottom: "bneck_conv_dw_2"
+    top: "bneck_conv_dw_2_Relu"
+}
+# ReLU6
+
+layer {
+    name: "conv_pw_lin_2"
+    type: "Convolution"
+    bottom: "bneck_conv_dw_2_Relu"
+    top: "conv_pw_lin_2"
+    convolution_param {
+        num_output: 24
+        pad: 0
+        kernel_size: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "residual_2"
+    type: "Eltwise"
+    bottom: "conv_pw_lin_2"
+    bottom: "conv_pw_lin_1"
+    top: "residual_2"
+    eltwise_param {
+        operation: SUM
+    }
+}
+
+layer {
+    name: "conv_exp_3"
+    type: "Convolution"
+    bottom: "residual_2"
+    top: "conv_exp_3"
+    convolution_param {
+        num_output: 144
+        pad: 0
+        kernel_size: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv_exp_3_Relu"
+    type: "ReLU"
+    bottom: "conv_exp_3"
+    top: "conv_exp_3_Relu"
+}
+# ReLU6
+
+layer {
+    name: "bneck_conv_dw_3"
+    type: "Convolution"
+    bottom: "conv_exp_3_Relu"
+    top: "bneck_conv_dw_3"
+    convolution_param {
+        num_output: 144
+        pad: 1
+        kernel_size: 3
+        stride: 2
+        group: 144
+    }
+}
+
+layer {
+    name: "bneck_conv_dw_3_Relu"
+    type: "ReLU"
+    bottom: "bneck_conv_dw_3"
+    top: "bneck_conv_dw_3_Relu"
+}
+# ReLU6
+
+layer {
+    name: "conv_pw_lin_3"
+    type: "Convolution"
+    bottom: "bneck_conv_dw_3_Relu"
+    top: "conv_pw_lin_3"
+    convolution_param {
+        num_output: 32
+        pad: 0
+        kernel_size: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv_exp_4"
+    type: "Convolution"
+    bottom: "conv_pw_lin_3"
+    top: "conv_exp_4"
+    convolution_param {
+        num_output: 192
+        pad: 0
+        kernel_size: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv_exp_4_Relu"
+    type: "ReLU"
+    bottom: "conv_exp_4"
+    top: "conv_exp_4_Relu"
+}
+# ReLU6
+
+layer {
+    name: "bneck_conv_dw_4"
+    type: "Convolution"
+    bottom: "conv_exp_4_Relu"
+    top: "bneck_conv_dw_4"
+    convolution_param {
+        num_output: 192
+        pad: 1
+        kernel_size: 3
+        stride: 1
+        group: 192
+    }
+}
+
+layer {
+    name: "bneck_conv_dw_4_Relu"
+    type: "ReLU"
+    bottom: "bneck_conv_dw_4"
+    top: "bneck_conv_dw_4_Relu"
+}
+# ReLU6
+
+layer {
+    name: "conv_pw_lin_4"
+    type: "Convolution"
+    bottom: "bneck_conv_dw_4_Relu"
+    top: "conv_pw_lin_4"
+    convolution_param {
+        num_output: 32
+        pad: 0
+        kernel_size: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "residual_4"
+    type: "Eltwise"
+    bottom: "conv_pw_lin_4"
+    bottom: "conv_pw_lin_3"
+    top: "residual_4"
+    eltwise_param {
+        operation: SUM
+    }
+}
+
+layer {
+    name: "conv_exp_5"
+    type: "Convolution"
+    bottom: "residual_4"
+    top: "conv_exp_5"
+    convolution_param {
+        num_output: 192
+        pad: 0
+        kernel_size: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv_exp_5_Relu"
+    type: "ReLU"
+    bottom: "conv_exp_5"
+    top: "conv_exp_5_Relu"
+}
+# ReLU6
+
+layer {
+    name: "bneck_conv_dw_5"
+    type: "Convolution"
+    bottom: "conv_exp_5_Relu"
+    top: "bneck_conv_dw_5"
+    convolution_param {
+        num_output: 192
+        pad: 1
+        kernel_size: 3
+        stride: 1
+        group: 192
+    }
+}
+
+layer {
+    name: "bneck_conv_dw_5_Relu"
+    type: "ReLU"
+    bottom: "bneck_conv_dw_5"
+    top: "bneck_conv_dw_5_Relu"
+}
+# ReLU6
+
+layer {
+    name: "conv_pw_lin_5"
+    type: "Convolution"
+    bottom: "bneck_conv_dw_5_Relu"
+    top: "conv_pw_lin_5"
+    convolution_param {
+        num_output: 32
+        pad: 0
+        kernel_size: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "residual_5"
+    type: "Eltwise"
+    bottom: "conv_pw_lin_5"
+    bottom: "residual_4"
+    top: "residual_5"
+    eltwise_param {
+        operation: SUM
+    }
+}
+
+layer {
+    name: "conv_exp_6"
+    type: "Convolution"
+    bottom: "residual_5"
+    top: "conv_exp_6"
+    convolution_param {
+        num_output: 192
+        pad: 0
+        kernel_size: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv_exp_6_Relu"
+    type: "ReLU"
+    bottom: "conv_exp_6"
+    top: "conv_exp_6_Relu"
+}
+# ReLU6
+
+layer {
+    name: "bneck_conv_dw_6"
+    type: "Convolution"
+    bottom: "conv_exp_6_Relu"
+    top: "bneck_conv_dw_6"
+    convolution_param {
+        num_output: 192
+        pad: 1
+        kernel_size: 3
+        stride: 2
+        group: 192
+    }
+}
+
+layer {
+    name: "bneck_conv_dw_6_Relu"
+    type: "ReLU"
+    bottom: "bneck_conv_dw_6"
+    top: "bneck_conv_dw_6_Relu"
+}
+# ReLU6
+
+layer {
+    name: "conv_pw_lin_6"
+    type: "Convolution"
+    bottom: "bneck_conv_dw_6_Relu"
+    top: "conv_pw_lin_6"
+    convolution_param {
+        num_output: 64
+        pad: 0
+        kernel_size: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv_exp_7"
+    type: "Convolution"
+    bottom: "conv_pw_lin_6"
+    top: "conv_exp_7"
+    convolution_param {
+        num_output: 384
+        pad: 0
+        kernel_size: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv_exp_7_Relu"
+    type: "ReLU"
+    bottom: "conv_exp_7"
+    top: "conv_exp_7_Relu"
+}
+# ReLU6
+
+layer {
+    name: "bneck_conv_dw_7"
+    type: "Convolution"
+    bottom: "conv_exp_7_Relu"
+    top: "bneck_conv_dw_7"
+    convolution_param {
+        num_output: 384
+        pad: 1
+        kernel_size: 3
+        stride: 1
+        group: 384
+    }
+}
+
+layer {
+    name: "bneck_conv_dw_7_Relu"
+    type: "ReLU"
+    bottom: "bneck_conv_dw_7"
+    top: "bneck_conv_dw_7_Relu"
+}
+# ReLU6
+
+layer {
+    name: "conv_pw_lin_7"
+    type: "Convolution"
+    bottom: "bneck_conv_dw_7_Relu"
+    top: "conv_pw_lin_7"
+    convolution_param {
+        num_output: 64
+        pad: 0
+        kernel_size: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "residual_7"
+    type: "Eltwise"
+    bottom: "conv_pw_lin_7"
+    bottom: "conv_pw_lin_6"
+    top: "residual_7"
+    eltwise_param {
+        operation: SUM
+    }
+}
+
+layer {
+    name: "conv_exp_8"
+    type: "Convolution"
+    bottom: "residual_7"
+    top: "conv_exp_8"
+    convolution_param {
+        num_output: 384
+        pad: 0
+        kernel_size: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv_exp_8_Relu"
+    type: "ReLU"
+    bottom: "conv_exp_8"
+    top: "conv_exp_8_Relu"
+}
+# ReLU6
+
+layer {
+    name: "bneck_conv_dw_8"
+    type: "Convolution"
+    bottom: "conv_exp_8_Relu"
+    top: "bneck_conv_dw_8"
+    convolution_param {
+        num_output: 384
+        pad: 1
+        kernel_size: 3
+        stride: 1
+        group: 384
+    }
+}
+
+layer {
+    name: "bneck_conv_dw_8_Relu"
+    type: "ReLU"
+    bottom: "bneck_conv_dw_8"
+    top: "bneck_conv_dw_8_Relu"
+}
+# ReLU6
+
+layer {
+    name: "conv_pw_lin_8"
+    type: "Convolution"
+    bottom: "bneck_conv_dw_8_Relu"
+    top: "conv_pw_lin_8"
+    convolution_param {
+        num_output: 64
+        pad: 0
+        kernel_size: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "residual_8"
+    type: "Eltwise"
+    bottom: "conv_pw_lin_8"
+    bottom: "residual_7"
+    top: "residual_8"
+    eltwise_param {
+        operation: SUM
+    }
+}
+
+layer {
+    name: "conv_exp_9"
+    type: "Convolution"
+    bottom: "residual_8"
+    top: "conv_exp_9"
+    convolution_param {
+        num_output: 384
+        pad: 0
+        kernel_size: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv_exp_9_Relu"
+    type: "ReLU"
+    bottom: "conv_exp_9"
+    top: "conv_exp_9_Relu"
+}
+# ReLU6
+
+layer {
+    name: "bneck_conv_dw_9"
+    type: "Convolution"
+    bottom: "conv_exp_9_Relu"
+    top: "bneck_conv_dw_9"
+    convolution_param {
+        num_output: 384
+        pad: 1
+        kernel_size: 3
+        stride: 1
+        group: 384
+    }
+}
+
+layer {
+    name: "bneck_conv_dw_9_Relu"
+    type: "ReLU"
+    bottom: "bneck_conv_dw_9"
+    top: "bneck_conv_dw_9_Relu"
+}
+# ReLU6
+
+layer {
+    name: "conv_pw_lin_9"
+    type: "Convolution"
+    bottom: "bneck_conv_dw_9_Relu"
+    top: "conv_pw_lin_9"
+    convolution_param {
+        num_output: 64
+        pad: 0
+        kernel_size: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "residual_9"
+    type: "Eltwise"
+    bottom: "conv_pw_lin_9"
+    bottom: "residual_8"
+    top: "residual_9"
+    eltwise_param {
+        operation: SUM
+    }
+}
+
+layer {
+    name: "conv_exp_10"
+    type: "Convolution"
+    bottom: "residual_9"
+    top: "conv_exp_10"
+    convolution_param {
+        num_output: 384
+        pad: 0
+        kernel_size: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv_exp_10_Relu"
+    type: "ReLU"
+    bottom: "conv_exp_10"
+    top: "conv_exp_10_Relu"
+}
+# ReLU6
+
+layer {
+    name: "bneck_conv_dw_10"
+    type: "Convolution"
+    bottom: "conv_exp_10_Relu"
+    top: "bneck_conv_dw_10"
+    convolution_param {
+        num_output: 384
+        pad: 1
+        kernel_size: 3
+        stride: 1
+        group: 384
+    }
+}
+
+layer {
+    name: "bneck_conv_dw_10_Relu"
+    type: "ReLU"
+    bottom: "bneck_conv_dw_10"
+    top: "bneck_conv_dw_10_Relu"
+}
+# ReLU6
+
+layer {
+    name: "conv_pw_lin_10"
+    type: "Convolution"
+    bottom: "bneck_conv_dw_10_Relu"
+    top: "conv_pw_lin_10"
+    convolution_param {
+        num_output: 96
+        pad: 0
+        kernel_size: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv_exp_11"
+    type: "Convolution"
+    bottom: "conv_pw_lin_10"
+    top: "conv_exp_11"
+    convolution_param {
+        num_output: 576
+        pad: 0
+        kernel_size: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv_exp_11_Relu"
+    type: "ReLU"
+    bottom: "conv_exp_11"
+    top: "conv_exp_11_Relu"
+}
+# ReLU6
+
+layer {
+    name: "bneck_conv_dw_11"
+    type: "Convolution"
+    bottom: "conv_exp_11_Relu"
+    top: "bneck_conv_dw_11"
+    convolution_param {
+        num_output: 576
+        pad: 1
+        kernel_size: 3
+        stride: 1
+        group: 576
+    }
+}
+
+layer {
+    name: "bneck_conv_dw_11_Relu"
+    type: "ReLU"
+    bottom: "bneck_conv_dw_11"
+    top: "bneck_conv_dw_11_Relu"
+}
+# ReLU6
+
+layer {
+    name: "conv_pw_lin_11"
+    type: "Convolution"
+    bottom: "bneck_conv_dw_11_Relu"
+    top: "conv_pw_lin_11"
+    convolution_param {
+        num_output: 96
+        pad: 0
+        kernel_size: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "residual_11"
+    type: "Eltwise"
+    bottom: "conv_pw_lin_11"
+    bottom: "conv_pw_lin_10"
+    top: "residual_11"
+    eltwise_param {
+        operation: SUM
+    }
+}
+
+layer {
+    name: "conv_exp_12"
+    type: "Convolution"
+    bottom: "residual_11"
+    top: "conv_exp_12"
+    convolution_param {
+        num_output: 576
+        pad: 0
+        kernel_size: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "conv_exp_12_Relu"
+    type: "ReLU"
+    bottom: "conv_exp_12"
+    top: "conv_exp_12_Relu"
+}
+# ReLU6
+
+layer {
+    name: "bneck_conv_dw_12"
+    type: "Convolution"
+    bottom: "conv_exp_12_Relu"
+    top: "bneck_conv_dw_12"
+    convolution_param {
+        num_output: 576
+        pad: 1
+        kernel_size: 3
+        stride: 1
+        group: 576
+    }
+}
+
+layer {
+    name: "bneck_conv_dw_12_Relu"
+    type: "ReLU"
+    bottom: "bneck_conv_dw_12"
+    top: "bneck_conv_dw_12_Relu"
+}
+# ReLU6
+
+layer {
+    name: "conv_pw_lin_12"
+    type: "Convolution"
+    bottom: "bneck_conv_dw_12_Relu"
+    top: "conv_pw_lin_12"
+    convolution_param {
+        num_output: 96
+        pad: 0
+        kernel_size: 1
+        stride: 1
+    }
+}
+
+layer {
+    name: "residual_12"
+    type: "Eltwise"
+    bottom: "conv_pw_lin_12"
+    bottom: "residual_11"
+    top: "residual_12"
+    eltwise_param {
+        operation: SUM
+    }
+}
+
+
+

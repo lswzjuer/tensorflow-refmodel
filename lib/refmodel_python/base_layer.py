@@ -2,7 +2,7 @@
 # @Author: liusongwei
 # @Date:   2019-05-18 14:27:29
 # @Last Modified by:   liusongwei
-# @Last Modified time: 2019-05-20 14:30:41
+# @Last Modified time: 2019-06-09 20:14:49
 
 import tensorflow as tf 
 import numpy as np 
@@ -122,7 +122,7 @@ def saturate(input,word_width):
                 output_flatten[i]=max_val
             elif input_flatten[i]<min_val:
                 output_flatten[i]=min_val
-        return output_flatten
+        return output_flatten.reshape(sh)
     return tf.py_func(func_saturate,[input],tf.float32,stateful=False,name='Sp')
 
 def lp_conv(input, k, s_h, s_w, bw, fl, rs, rate,padding):
@@ -153,11 +153,12 @@ def lp(input,bw,rs):
                 input_round=input_shift+0.5
             else:
                 input_round=input_shift-0.5
-
             if int(input_round)<=int(min_val):
                 output_flatten[i]=min_val
             elif int(input_round)>=int(max_val):
                 output_flatten[i]=max_val
+            else:
+                output_flatten[i]=input_round
         output=output_flatten.reshape(sh)
         return output
     return tf.py_func(func_lp,[input],tf.float32,stateful=False,name='Lp')

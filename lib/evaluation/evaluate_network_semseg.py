@@ -276,7 +276,7 @@ if __name__ == '__main__':
                 
                 image, label = load_sample(images_dir, labels_dir, file)
                 image, label = preprocess_for_val(image, label)
-   
+                
 
                 if True:
                     image = np.pad(image, ((0, 0), (0, 8), (0, 0), (0, 0)), mode='constant')
